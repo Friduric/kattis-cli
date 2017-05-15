@@ -8,6 +8,13 @@ problems that have been accepted and will do so in earliest first
 fashion. Meaning you can look at the first accepted submission to a
 problem and compare this against the deadline.
 
+The repo also has a calculate_points script that downloads the
+accepted data and compares it with the rules in 'rules.json'. It
+counts the points you have for UPG1 and LAB1 respectively but it
+doesn't include sessions. Running it will give you a summary of how
+many points you have towards UPG1 and LAB1, minus the points you
+(should) have from sessions.
+
 Also to be clear: I am not affiliated with Kattis in any way. I am a
 student at Linköping University that is employed as an assistant in
 the course TDDD95 and have decided to extend the kattis-cli, primarily
