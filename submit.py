@@ -6,6 +6,11 @@ import sys
 import re
 import webbrowser
 
+try:
+    from urlparse import urlparse as UrlParse
+except ImportError:
+    from urllib.parse import urlparse as UrlParse
+
 from bs4 import BeautifulSoup
 import requests
 import requests.exceptions
@@ -130,7 +135,9 @@ def get_submissions_with_config(cfg):
     if login_reply.status_code == 200:
         cookies = login_reply.cookies
         username = cfg.get('user', 'username')
-        profile = 'https://liu.kattis.com/users/{}'.format(username)
+        loginurl = get_url(cfg, 'loginurl', 'login')
+        base = UrlParse(loginurl).netloc
+        profile = 'https://{}/users/{}'.format(base, username)
         return get_all_submissions(profile, cookies)
     else:
         print('Could not login!')
