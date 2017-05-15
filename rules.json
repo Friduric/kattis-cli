@@ -1,0 +1,527 @@
+{
+  "rules": [
+    {
+      "deadline": "24-01-2017 08:00",
+      "points": "1",
+      "needs": "aspenavenue",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "24-01-2017 08:00",
+      "points": "1",
+      "needs": "help2",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "24-01-2017 08:00",
+      "points": "1",
+      "needs": "ljutnja",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "24-01-2017 08:00",
+      "points": "1",
+      "needs": "spiderman",
+      "towards": "UPG1"
+    },
+
+    {
+      "deadline": "31-01-2017 08:00",
+      "points": "1",
+      "needs": "caching",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "31-01-2017 08:00",
+      "points": "1",
+      "needs": "chopwood",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "31-01-2017 08:00",
+      "points": "1",
+      "needs": "setstack",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "31-01-2017 08:00",
+      "points": "1",
+      "needs": "turbo",
+      "towards": "UPG1"
+    },
+
+
+    {
+      "deadline": "08-02-2017 10:00",
+      "points": "1",
+      "needs": "deadfraction",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "08-02-2017 10:00",
+      "points": "1",
+      "needs": "ignore",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "08-02-2017 10:00",
+      "points": "1",
+      "needs": "perfectpowers",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "08-02-2017 10:00",
+      "points": "1",
+      "needs": "threedigits",
+      "towards": "UPG1"
+    },
+
+    {
+      "deadline": "15-02-2017 10:00",
+      "points": "1",
+      "needs": "cudak",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "15-02-2017 10:00",
+      "points": "1",
+      "needs": "funnygames",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "15-02-2017 10:00",
+      "points": "1",
+      "needs": "squarefieldshard",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "15-02-2017 10:00",
+      "points": "1",
+      "needs": "uxuhulvoting",
+      "towards": "UPG1"
+    },
+
+    {
+      "deadline": "22-02-2017 10:00",
+      "points": "1",
+      "needs": "borg",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "22-02-2017 10:00",
+      "points": "1",
+      "needs": "equivalences",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "22-02-2017 10:00",
+      "points": "1",
+      "needs": "frogger",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "22-02-2017 10:00",
+      "points": "1",
+      "needs": "gold",
+      "towards": "UPG1"
+    },
+
+    {
+      "deadline": "28-02-2017 08:00",
+      "points": "1",
+      "needs": "councilling",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "28-02-2017 08:00",
+      "points": "1",
+      "needs": "fulltank",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "28-02-2017 08:00",
+      "points": "1",
+      "needs": "george",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "28-02-2017 08:00",
+      "points": "1",
+      "needs": "islandhopping",
+      "towards": "UPG1"
+    },
+
+    {
+      "deadline": "07-03-2017 08:00",
+      "points": "1",
+      "needs": "getshorty",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "07-03-2017 08:00",
+      "points": "1",
+      "needs": "hidingplaces",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "07-03-2017 08:00",
+      "points": "1",
+      "needs": "risk",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "07-03-2017 08:00",
+      "points": "1",
+      "needs": "xyzzy",
+      "towards": "UPG1"
+    },
+
+    {
+      "deadline": "29-03-2017 08:00",
+      "points": "1",
+      "needs": "jackjill",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "29-03-2017 08:00",
+      "points": "1",
+      "needs": "towers",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "29-03-2017 08:00",
+      "points": "1",
+      "needs": "unfairplay",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "29-03-2017 08:00",
+      "points": "1",
+      "needs": "whacamole",
+      "towards": "UPG1"
+    },
+
+    {
+      "deadline": "07-04-2017 13:00",
+      "points": "1",
+      "needs": "dictionaryattack",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "07-04-2017 13:00",
+      "points": "1",
+      "needs": "dominant",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "07-04-2017 13:00",
+      "points": "1",
+      "needs": "evilstraw",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "07-04-2017 13:00",
+      "points": "1",
+      "needs": "intellectualproperty",
+      "towards": "UPG1"
+    },
+
+    {
+      "deadline": "12-04-2017 08:00",
+      "points": "1",
+      "needs": "codetheft",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "12-04-2017 08:00",
+      "points": "1",
+      "needs": "lifeforms",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "12-04-2017 08:00",
+      "points": "1",
+      "needs": "messages",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "12-04-2017 08:00",
+      "points": "1",
+      "needs": "suffixarrayreconstruction",
+      "towards": "UPG1"
+    },
+
+    {
+      "deadline": "28-04-2017 13:00",
+      "points": "1",
+      "needs": "gokigen",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "28-04-2017 13:00",
+      "points": "1",
+      "needs": "maxloot",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "28-04-2017 13:00",
+      "points": "1",
+      "needs": "amiga",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "28-04-2017 13:00",
+      "points": "1",
+      "needs": "satisfiability",
+      "towards": "UPG1"
+    },
+
+    {
+      "deadline": "05-05-2017 13:00",
+      "points": "1",
+      "needs": "circularlock",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "05-05-2017 13:00",
+      "points": "1",
+      "needs": "factovisors",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "05-05-2017 13:00",
+      "points": "1",
+      "needs": "happyprime",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "05-05-2017 13:00",
+      "points": "1",
+      "needs": "rasterized",
+      "towards": "UPG1"
+    },
+
+    {
+      "deadline": "10-05-2017 08:00",
+      "points": "1",
+      "needs": "circularlock",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "10-05-2017 08:00",
+      "points": "1",
+      "needs": "factovisors",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "10-05-2017 08:00",
+      "points": "1",
+      "needs": "happyprime",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "10-05-2017 08:00",
+      "points": "1",
+      "needs": "rasterized",
+      "towards": "UPG1"
+    },
+
+    {
+      "deadline": "19-05-2017 13:00",
+      "points": "1",
+      "needs": "circularlock",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "19-05-2017 13:00",
+      "points": "1",
+      "needs": "factovisors",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "19-05-2017 13:00",
+      "points": "1",
+      "needs": "happyprime",
+      "towards": "UPG1"
+    },
+    {
+      "deadline": "19-05-2017 13:00",
+      "points": "1",
+      "needs": "rasterized",
+      "towards": "UPG1"
+    },
+
+
+
+
+
+    {
+      "points": "1",
+      "needs": "intervalcover",
+      "towards": "LAB1"
+    },
+    {
+      "points": "1",
+      "needs": "knapsack",
+      "towards": "LAB1"
+    },
+    {
+      "points": "1",
+      "needs": "longincsubseq",
+      "towards": "LAB1"
+    },
+    {
+      "points": "1",
+      "needs": "unionfind",
+      "towards": "LAB1"
+    },
+    {
+      "points": "1",
+      "needs": "fenwick",
+      "towards": "LAB1"
+    },
+    {
+      "points": "1",
+      "needs": "polymul2",
+      "towards": "LAB1"
+    },
+    {
+      "points": "1",
+      "needs": "equationsolver",
+      "towards": "LAB1"
+    },
+    {
+      "points": "1",
+      "needs": "equationsolverplus",
+      "towards": "LAB1"
+    },
+
+    {
+      "points": "1",
+      "needs": "shortestpath1",
+      "towards": "LAB1"
+    },
+    {
+      "points": "1",
+      "needs": "shortestpath2",
+      "towards": "LAB1"
+    },
+    {
+      "points": "1",
+      "needs": "shortestpath3",
+      "towards": "LAB1"
+    },
+    {
+      "points": "1",
+      "needs": "allpairspath",
+      "towards": "LAB1"
+    },
+    {
+      "points": "1",
+      "needs": "minspantree",
+      "towards": "LAB1"
+    },
+    {
+      "points": "1",
+      "needs": "maxflow",
+      "towards": "LAB1"
+    },
+    {
+      "points": "1",
+      "needs": "mincostmaxflow",
+      "towards": "LAB1"
+    },
+    {
+      "points": "1",
+      "needs": "eulerianpath",
+      "towards": "LAB1"
+    },
+
+    {
+      "points": "1",
+      "needs": "stringmatching",
+      "towards": "LAB1"
+    },
+    {
+      "points": "1",
+      "needs": "stringmultimatching",
+      "towards": "LAB1"
+    },
+    {
+      "points": "2",
+      "needs": "suffixsorting",
+      "towards": "LAB1"
+    },
+    {
+      "points": "1",
+      "needs": "rationalarithmetic",
+      "towards": "LAB1"
+    },
+    {
+      "points": "1",
+      "needs": "modulararithmetic",
+      "towards": "LAB1"
+    },
+    {
+      "points": "1",
+      "needs": "chineseremainder",
+      "towards": "LAB1"
+    },
+    {
+      "points": "1",
+      "needs": "generalchineseremainder",
+      "towards": "LAB1"
+    },
+    {
+      "points": "1",
+      "needs": "primesieve",
+      "towards": "LAB1"
+    },
+
+    {
+      "points": "1",
+      "needs": "polygonarea",
+      "towards": "LAB1"
+    },
+    {
+      "points": "1",
+      "needs": "pointinpolygon",
+      "towards": "LAB1"
+    },
+    {
+      "points": "2",
+      "needs": "segmentintersection",
+      "towards": "LAB1"
+    },
+    {
+      "points": "1",
+      "needs": "segmentdistance",
+      "towards": "LAB1"
+    },
+    {
+      "points": "1",
+      "needs": "closestpair1",
+      "towards": "LAB1"
+    },
+    {
+      "points": "1",
+      "needs": "closestpair2",
+      "towards": "LAB1"
+    },
+    {
+      "points": "1",
+      "needs": "convexhullr",
+      "towards": "LAB1"
+    },
+    {
+      "points": "1",
+      "needs": "maxcolinear",
+      "towards": "LAB1"
+    },
+    {
+      "points": "1",
+      "needs": "linearrecurrence",
+      "towards": "LAB1"
+    }
+  ]
+}
