@@ -6,6 +6,7 @@ import sys
 import re
 import webbrowser
 
+from bs4 import BeautifulSoup
 import requests
 import requests.exceptions
 
@@ -123,6 +124,45 @@ Please download a new .kattisrc file''')
     loginurl = get_url(cfg, 'loginurl', 'login')
     return login(loginurl, username, password, token)
 
+def get_submissions_with_config(cfg):
+    """Uses a config object to return all submissions for a user"""
+    login_reply = login_from_config(cfg)
+    if login_reply.status_code == 200:
+        cookies = login_reply.cookies
+        username = cfg.get('user', 'username')
+        profile = 'https://liu.kattis.com/users/{}'.format(username)
+        return get_all_submissions(profile, cookies)
+    else:
+        print('Could not login!')
+        sys.exit(1)
+
+def get_all_submissions(profile_url, cookies, verbose=True):
+    """Returns all submissions from a user using the profile url and the
+    login cookie provided."""
+    page = 0
+    collect = []
+    while True:
+        url = '{}?page={}'.format(profile_url, page)
+        response = requests.get(url, cookies=cookies, headers=_HEADERS)
+        soup = BeautifulSoup(response.text, 'lxml')
+        table = soup.find_all('table', class_='table-submissions')[0]
+        rows = table.find_all('tbody')[0].find_all('tr')
+        if not rows:
+            return collect
+        for row in rows:
+            data_items = row.find_all('td')
+            # This is how the html is divided in the table cells.
+            # Submission ID | Time | Name + link to problem | Status | runtime | language
+            #      0        |   1  |          2             |   3    |   4     |   5
+            problem_id = data_items[2].a['href'].split('/')[-1]
+            problem_name = data_items[2].a.text
+            accepted = 'accepted' in data_items[3]['class']
+            time = data_items[1].text
+            if accepted:
+                collect.append((time, problem_id, problem_name))
+        if verbose:
+            print('Collected page #{} and found {} accepted submissions'.format(page + 1, len(collect)))
+        page += 1
 
 def submit(submit_url, cookies, problem, language, files, mainclass='', tag=''):
     """Make a submission.
@@ -177,6 +217,24 @@ def open_submission(submit_response, cfg):
             url = '%s/%s' % (submissions_url, submission_id)
             webbrowser.open(url)
 
+def print_submissions(submissions):
+    submissions.reverse() # Earliest first
+    def print_single(s):
+        print('{} {} {}'.format(s[0].ljust(20), s[1].ljust(30), s[2].ljust(30)))
+    print()
+    print('-'*86)
+    print_single(['time', 'id', 'name'])
+    print('-'*86)
+    already_solved = set()
+    for idx, submission in enumerate(submissions):
+        if submission[1] not in already_solved:
+            already_solved.add(submission[1])
+            print_single(submission)
+            if len(already_solved) % 5 == 0:
+                print('     {}     '.format('-' * 76))
+    print('-'*86)
+    print('{} {}'.format('Total accepted submissions:'.ljust(30), len(submissions)))
+    print('{} {}'.format('Problems with Accepted status:'.ljust(30), len(already_solved)))
 
 def main():
     parser = argparse.ArgumentParser(description='Submit a solution to Kattis')
@@ -194,7 +252,10 @@ Overrides default guess (based on suffix of first filename)''')
     parser.add_argument('-f', '--force',
                    help='Force, no confirmation prompt before submission',
                    action='store_true')
-    parser.add_argument('files', nargs='+')
+    parser.add_argument('-s', '--submissions',
+                        help='Print all accepted submissions',
+                        action='store_true')
+    parser.add_argument('--files', nargs='+')
 
     args = parser.parse_args()
     files = args.files
@@ -204,6 +265,15 @@ Overrides default guess (based on suffix of first filename)''')
     except ConfigError as exc:
         print(exc)
         sys.exit(1)
+
+    if args.submissions:
+        subs = get_submissions_with_config(cfg)
+        print_submissions(subs)
+        sys.exit(0)
+    else:
+        if not files:
+            print('Must either supply files for submission or -s flag for listing accepted solutions!')
+            sys.exit(1)
 
     problem, ext = os.path.splitext(os.path.basename(args.files[0]))
     language = _LANGUAGE_GUESS.get(ext, None)
