@@ -8,6 +8,11 @@ problems that have been accepted and will do so in earliest first
 fashion. Meaning you can look at the first accepted submission to a
 problem and compare this against the deadline.
 
+Also to be clear: I am not affiliated with Kattis in any way. I am a
+student at Linköping University that is employed as an assistant in
+the course TDDD95 and have decided to extend the kattis-cli, primarily
+for use by TDDD95 students (but everyone else is welcome to!).
+
 # Configuration file
 
 Before running the submission client, you need to
