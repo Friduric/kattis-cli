@@ -269,6 +269,7 @@
       "needs": "amiga",
       "towards": "UPG1"
     },
+
     {
       "deadline": "28-04-2017 13:00",
       "points": "1",
@@ -304,50 +305,50 @@
     {
       "deadline": "10-05-2017 08:00",
       "points": "1",
-      "needs": "circularlock",
+      "needs": "barktree",
       "towards": "UPG1"
     },
     {
       "deadline": "10-05-2017 08:00",
       "points": "1",
-      "needs": "factovisors",
+      "needs": "wrapping",
       "towards": "UPG1"
     },
     {
       "deadline": "10-05-2017 08:00",
       "points": "1",
-      "needs": "happyprime",
+      "needs": "trilemma",
       "towards": "UPG1"
     },
     {
       "deadline": "10-05-2017 08:00",
       "points": "1",
-      "needs": "rasterized",
+      "needs": "rafting",
       "towards": "UPG1"
     },
 
     {
       "deadline": "19-05-2017 13:00",
       "points": "1",
-      "needs": "circularlock",
+      "needs": "bagoftiles",
       "towards": "UPG1"
     },
     {
       "deadline": "19-05-2017 13:00",
       "points": "1",
-      "needs": "factovisors",
+      "needs": "howmanyzeros",
       "towards": "UPG1"
     },
     {
       "deadline": "19-05-2017 13:00",
       "points": "1",
-      "needs": "happyprime",
+      "needs": "organising",
       "towards": "UPG1"
     },
     {
       "deadline": "19-05-2017 13:00",
       "points": "1",
-      "needs": "rasterized",
+      "needs": "2naire",
       "towards": "UPG1"
     },
 
