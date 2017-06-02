@@ -7,17 +7,23 @@ import submit
 
 Rule = namedtuple('Rule', 'needs name points towards deadline after_deadline')
 
+Submission = namedtuple('Submission', 'time problemid problemname user')
+
+User = namedtuple('User', 'submissions name id')
+
 def make_rule(needs, name, points, towards, deadline, after_deadline):
     return Rule(needs, name, points, towards, deadline, after_deadline)
 
-def get_time(sub):
-    return sub[0]
+def make_submission(time, problemid, problemname, user):
+    return Submission(time, problemid, problemname, user)
 
-def get_id(sub):
-    return sub[1]
+def make_user(name, id):
+    return User(submissions=[], name=name, id=id)
 
-def get_name(sub):
-    return sub[2]
+def user_add_submission(user, submission):
+    user.submissions.append(submission)
+
+
 
 def get_rules(rulefile='rules.json'):
     with open(rulefile, 'r') as f:
@@ -50,7 +56,7 @@ def time_compare(a, b):
 def count_points(submissions):
     solved = {}
     for submission in submissions:
-        solved[get_id(submission)] = get_time(submission)
+        solved[submission.problemid] = submission.time
     func_map = {
         'halved': lambda x: x / 2.0
     }
@@ -75,24 +81,102 @@ def count_points(submissions):
     for key in sorted(awarded):
         print('In {} you have {} pts'.format(key, awarded[key]))
     print('Remember to add points for the problem sessions you have done to LAB1!')
+    print()
 
 def get_earliest_ac_solutions(submissions):
     subs = set()
     collect = []
     for sub in reversed(submissions):
-        if get_id(sub) not in subs:
-            subs.add(get_id(sub))
+        if sub.problemid not in subs:
+            subs.add(sub.probelemid)
             collect.append(sub)
     return collect
 
-def main():
+def count_for_me():
     try:
         cfg = submit.get_config()
     except submit.ConfigError as exc:
         print(exc)
         sys.exit(1)
     subs = submit.get_submissions_with_config(cfg)
-    count_points(get_earliest_ac_solutions(subs))
+    def sub_to_submission(sub):
+        time, problem_id, problem_name = sub
+        return make_submission(time=time, problemid=problem_id,
+                               problemname=problem_name, user='me')
+    submissions = [x for x in map(sub_to_submission, subs)]
+    count_points(get_earliest_ac_solutions(submissions))
+
+def count_session_data(session):
+    # session = starttime, name, problems, results, length
+    # results = [teamresult...]
+    # teamresult = {'members': [member], 'solved_count': [0-9]+}
+    output = defaultdict(int)
+    for teamresult in session['results']:
+        num_solved = teamresult['solved_count']
+        for member in teamresult['members']:
+            output[member] += num_solved
+    return output
+
+def print_session_data(sessions):
+    for session in sessions:
+        print(session)
+        cnt = 0
+        for key in sessions[session]:
+            if sessions[session][key]:
+                print('   {} - {}'.format(key.ljust(20), sessions[session][key]))
+                cnt += 1
+                if cnt % 3 == 0:
+                    print('-'*30)
+        print('*'*42)
+
+def count_user_data(user):
+    retuser = make_user(user['name'], user['username'])
+    for submission in user['submissions']:
+        # judgement, problem, time
+        judgement = submission['judgement']
+        if 'accepted' in judgement.lower():
+            problem = submission['problem']
+            time = submission['time']
+            sub = make_submission(time=time, problemid=problem, problemname=problem,
+                                  user=retuser.name)
+            user_add_submission(retuser, sub)
+    return retuser
+
+def get_sessions_by(sessions, pred, name):
+    return [(sessions[session][name], session) for session in filter(pred, sessions)]
+
+
+def count_for_all(fname):
+    with open(fname, 'r') as f:
+        contents = json.load(f)
+    sessions = {S['name']: count_session_data(S) for S in contents['sessions']}
+    users = {U['name']: count_user_data(U) for U in contents['students']}
+    def is_individual(session):
+        return '2' in session[-2:] or '3' in session[-2:] \
+            or '5' in session[-2:] or '6' in session[-2:]
+    def is_group(session):
+        return '4' in session[-2:] or '7' in session[-2:]
+    # print(get_sessions_by(sessions, is_individual, 'gustav-gransbo'))
+    # print(get_sessions_by(sessions, is_group, 'gustav-gransbo'))
+    for key in sorted(users):
+        user = users[key]
+        print('*'*42)
+        print('* {} *'.format(user.name.ljust(38)))
+        print('*'*42)
+        count_points(user.submissions)
+        print('* {} *'.format('Individual Sessions'.center(25)))
+        my_sessions = reversed(sorted(get_sessions_by(sessions, is_individual, user.id)))
+        for session in my_sessions:
+            if session[0] > 0:
+                print('   In {} {} got {} pts '.format(session[1], user.name, session[0]))
+        print('* {} *'.format('Group Sessions'.center(25)))
+        my_sessions = reversed(sorted(get_sessions_by(sessions, is_group, user.id)))
+        for session in my_sessions:
+            if session[0] > 0:
+                print('   In {} {} got {} pts '.format(session[1], user.name, session[0]))
+
+def main():
+    count_for_all('data/AAPS-AAPS17_export_all.json')
 
 if __name__ == '__main__':
     main()
