@@ -176,7 +176,12 @@ def count_for_all(fname):
                 print('   In {} {} got {} pts '.format(session[1], user.name, session[0]))
 
 def main():
-    count_for_all('data/AAPS-AAPS17_export_all.json')
+    if len(sys.argv) == 3 and sys.argv[1].lower() == 'students':
+        fname = sys.argv[2]
+        count_for_all(fname)
+    else:
+        count_for_me()
+
 
 if __name__ == '__main__':
     main()
