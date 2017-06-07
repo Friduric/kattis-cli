@@ -79,7 +79,7 @@ def count_points(submissions):
                                                                    rule.towards))
     print('   {}   '.format('-'*40))
     for key in sorted(awarded):
-        print('In {} you have {} pts'.format(key, awarded[key]))
+        print('In {} you have {} solved problems'.format(key, awarded[key]))
     print('Remember to add points for the problem sessions you have done to LAB1!')
     print()
 
