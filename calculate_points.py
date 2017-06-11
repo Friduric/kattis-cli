@@ -88,7 +88,7 @@ def get_earliest_ac_solutions(submissions):
     collect = []
     for sub in reversed(submissions):
         if sub.problemid not in subs:
-            subs.add(sub.probelemid)
+            subs.add(sub.problemid)
             collect.append(sub)
     return collect
 
