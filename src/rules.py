@@ -14,15 +14,21 @@ def ruleset_add_rule(ruleset, rule):
     ruleset.rules.append(rule)
 
 
-def parse_string(content):
-    parsed = json.loads(content)
+def parse_json(json):
     ruleset = make_ruleset()
     add_rule = lambda rule: ruleset_add_rule(ruleset, rule)
-    iterator = map(add_rule, parsed.get('rules', []))
+    iterator = map(add_rule, json.get('rules', []))
 
     util.consume(iterator)
     return ruleset
 
 
+def parse_string(content):
+    parsed = json.loads(content)
+    return parse_json(parsed)
+
+
 def parse_file(fpath):
-    return []
+    with open(fpath, 'r') as f:
+        parsed = json.load(f)
+    return parse_json(parsed)
