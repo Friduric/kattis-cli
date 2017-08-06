@@ -1,0 +1,12 @@
+{
+  "rules": [
+    {
+      "needs": "inspect-need",
+      "towards": "inspect-towards",
+      "points": 1,
+      "deadline": "01-01-2017 08:00",
+      "name": "Inspect Rule",
+      "late": "halved"
+    }
+  ]
+}

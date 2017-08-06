@@ -60,4 +60,4 @@ def test_inspect_simple_rule():
     assert rule.points == 1
     assert rule.deadline == "01-01-2017 08:00"
     assert rule.name == "Inspect Rule"
-    assert rule.after == "halved"
+    assert rule.late == "halved"
