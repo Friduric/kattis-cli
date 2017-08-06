@@ -17,8 +17,8 @@ def take(n, iterable):
     return list(itertools.islice(iterable, n))
 
 def find(pred, iterable):
-    default = None
-    return take(1, filter(pred, iterable)) or default
+    result = take(1, filter(pred, iterable)) or [None]
+    return result[0]
 
 def cond(iterable):
     def handler(*args, **kwargs):
