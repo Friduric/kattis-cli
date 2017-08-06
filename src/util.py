@@ -26,3 +26,12 @@ def cond(iterable):
             if pred(*args, **kwargs):
                 return handle(*args, **kwargs)
     return handler
+
+def identity(elem):
+    return elem
+
+def list_wrap(elem):
+    return [elem]
+
+def list_unwrap(values):
+    return find(lambda: True, values)

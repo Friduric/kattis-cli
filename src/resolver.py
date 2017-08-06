@@ -12,7 +12,7 @@ class Context:
 
     def __init__(self):
         self.function_handlers = collections.deque()
-
+        self.result = None
 
     def handle_expression(self, tree):
         handler = util.cond(self.function_handlers)
@@ -41,6 +41,10 @@ def context_add_handler(context, handler):
     context.function_handlers.append(handler)
 
 
+def context_set_result(context, result):
+    context.result = result
+
+
 ##########################################
 # Builtin functions for context          #
 ##########################################
@@ -51,27 +55,29 @@ def make_checker(string):
     return checker
 
 
-def make_reducer(string, oper):
-    def reducer(context, tree):
-        expressions = tree[string]
-        handle_expr = lambda expr: context.value_expression(expr)
-        values = util.map_now(handle_expr, expressions)
-        return functools.reduce(oper, values)
-    return reducer
-
-
-def make_comparison_resolver(string, oper):
+def make_general_resolver(string, oper, get_values, handle_expr):
     def resolver(context, tree):
         expression = tree[string]
-        lhs, rhs = expression['lhs'], expression['rhs']
-        handle_expr = lambda expr: context.value_expression(expr)
-        lhs_value, rhs_value = util.map_now(handle_expr, [lhs, rhs])
-        return oper(lhs_value, rhs_value)
+        values = util.map_now(lambda expr: handle_expr(context, expr), get_values(expression))
+        return oper(values)
     return resolver
 
 
+def make_general_handler(string, oper, get_values, handle_expr):
+    return make_checker(string), make_general_resolver(string, oper, get_values, handle_expr)
+
+
 def make_reduction_handler(string, oper):
-    return (make_checker(string), make_reducer(string, oper))
+    handle_expression = lambda context, expr: context.value_expression(expr)
+    operand = lambda values: functools.reduce(oper, values)
+    return make_general_handler(string, operand, util.identity, handle_expression)
+
+
+def make_comparison_handler(string, oper):
+    get_values = lambda expr: (expr['lhs'], expr['rhs'])
+    handle_expr = lambda context, expr: context.value_expression(expr)
+    operand = lambda values: oper(*values)
+    return make_general_handler(string, operand, get_values, handle_expr)
 
 
 def make_type_handler(target_type):
@@ -80,25 +86,26 @@ def make_type_handler(target_type):
     return (checker, resolver)
 
 
-def make_comparison_handler(string, oper):
-    return make_checker(string), make_comparison_resolver(string, oper)
-
-
 def make_numeric_iterable_handler(string, oper):
-    def handle_numeric_iterable(context, tree):
-        expressions = tree[string]
-        handle_expr = lambda expr: context.value_expression(expr)
-        values = util.map_now(handle_expr, expressions)
-        return oper(values)
-    return make_checker(string), handle_numeric_iterable
+    handle_expression = lambda context, expr: context.value_expression(expr)
+    return make_general_handler(string, oper, util.identity, handle_expression)
+
 
 def make_bool_iterable_handler(string, oper):
-    def handle_bool_iterable(context, tree):
-        expressions = tree[string]
-        handle_expr = lambda expr: context.bool_expression(expr)
-        values = util.map_now(handle_expr, expressions)
-        return oper(values)
-    return make_checker(string), handle_bool_iterable
+    handle_expression = lambda context, expr: context.bool_expression(expr)
+    return make_general_handler(string, oper, util.identity, handle_expression)
+
+
+def make_numeric_handler(string, oper):
+    handle_expression = lambda context, expr: context.value_expression(expr)
+    operand = lambda values: oper(values[0])
+    return make_general_handler(string, operand, util.list_wrap, handle_expression)
+
+
+def add_get_handler(context):
+    handle_expression = lambda context, expr: context.get_goal_value(expr)
+    return make_general_handler('get', util.list_unwrap, util.list_wrap, handle_expression)
+
 
 def add_builtin_functions(context):
     # Set up data for reducer functions
@@ -108,24 +115,19 @@ def add_builtin_functions(context):
         ('*', operator.mul),
         ('/', operator.truediv),
     ]
-    def add_reduction_function(string, oper):
-        context_add_handler(context, make_reduction_handler(string, oper))
-
     numeric_iterable_functions = [
         ('MAX', max),
         ('MIN', min)
     ]
-    def add_numeric_iterable_function(string, oper):
-        context_add_handler(context, make_numeric_iterable_handler(string, oper))
-
     bool_iterable_functions = [
         ('AND', all),
         ('OR', any)
     ]
-    def add_bool_iterable_function(string, oper):
-        context_add_handler(context, make_bool_iterable_handler(string, oper))
-
-    # Set up data for comparison functions
+    numeric_functions = [
+        ('positive', lambda x: x > 0),
+        ('negative', lambda x: x < 0),
+        ('zero', lambda x: x == 0)
+    ]
     comparison_functions = [
         ('<', operator.lt),
         ('<=', operator.le),
@@ -134,14 +136,21 @@ def add_builtin_functions(context):
         ('>=', operator.ge),
         ('>', operator.gt)
     ]
-    def add_comparison_function(string, oper):
-        context_add_handler(context, make_comparison_handler(string, oper))
+    handler_makers = [
+        (make_reduction_handler, reducer_functions),
+        (make_numeric_iterable_handler, numeric_iterable_functions),
+        (make_bool_iterable_handler, bool_iterable_functions),
+        (make_numeric_handler, numeric_functions),
+        (make_comparison_handler, comparison_functions)
+    ]
 
-    # Add comparison functions and type functions
-    util.map_now(lambda val: add_reduction_function(*val), reducer_functions)
-    util.map_now(lambda val: add_numeric_iterable_function(*val), numeric_iterable_functions)
-    util.map_now(lambda val: add_bool_iterable_function(*val), bool_iterable_functions)
-    util.map_now(lambda val: add_comparison_function(*val), comparison_functions)
+    def add_handler(handler, provided_functions):
+        def adder(string, oper):
+            context_add_handler(context, handler(string, oper))
+        util.map_now(lambda values: adder(*values), provided_functions)
+
+    add_get_handler(context)
+    util.map_now(lambda values: add_handler(*values), handler_makers)
     context_add_handler(context, make_type_handler(bool))
     context_add_handler(context, make_type_handler(int))
 
@@ -238,6 +247,7 @@ def goal_add_non_resolved_rule(goal, rule):
 def resolve(ruleset, context):
     rules = ruleset.rules
     result = Result()
+    context_set_result(context, result)
 
     def on_rule_fail(rule):
         result_update_failed_goal(result, rule)
