@@ -1,0 +1,10 @@
+{
+  "rules": [
+    {
+      "deadline": "01-01-2017 08:00",
+      "points": 1,
+      "needs": true,
+      "towards": "test"
+    }
+  ]
+}
