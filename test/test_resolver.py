@@ -31,7 +31,6 @@ def test_resolve_two_to_same():
 def test_resolve_with_ordering():
     rule_path = get_rule_file('test_resolve_with_ordering.json')
     ruleset = rules.parse_file(rule_path.as_posix())
-    random.shuffle(ruleset.rules) # Shuffle the rules, the order should not make a difference
     assert len(ruleset.rules) == 5
 
     context = resolver.make_context()

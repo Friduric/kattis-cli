@@ -1,11 +1,6 @@
 {
   "rules": [
     {
-      "needs": true,
-      "towards": "goal-1",
-      "points": 1
-    },
-    {
       "needs": { "positive": { "get": "goal-1" } },
       "towards": "goal-2",
       "points": 1
@@ -30,6 +25,11 @@
         ]
       },
       "towards": "goal-5",
+      "points": 1
+    },
+    {
+      "needs": true,
+      "towards": "goal-1",
       "points": 1
     }
   ]

@@ -31,7 +31,8 @@ class Context:
         return result
 
     def get_goal_value(self, goal):
-        return 0
+        return result_get_goal_points(self.result, goal)
+
 
 def make_context():
     context = Context()
@@ -204,6 +205,14 @@ def result_update_failed_goal(result, rule):
     goal_add_non_resolved_rule(goal, rule)
 
 
+def result_get_goal_points(result, goal_id):
+    def is_correct_goal(goal):
+        return goal.id == goal_id
+    goal = util.find(is_correct_goal, result.goals)
+    on_fail = lambda: 0
+    on_success = lambda: goal.points
+    return util.crossroad(lambda: goal, on_success, on_fail)
+
 ##########################################
 # Goal                                   #
 ##########################################
@@ -244,6 +253,10 @@ def goal_add_non_resolved_rule(goal, rule):
 ##########################################
 # Resolver function                      #
 ##########################################
+
+
+def topological_order(rules):
+    pass
 
 
 def resolve(ruleset, context):
