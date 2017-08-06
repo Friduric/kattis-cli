@@ -19,3 +19,10 @@ def take(n, iterable):
 def find(pred, iterable):
     default = None
     return take(1, filter(pred, iterable)) or default
+
+def cond(iterable):
+    def handler(*args, **kwargs):
+        for pred, handle in iterable:
+            if pred(*args, **kwargs):
+                return handle(*args, **kwargs)
+    return handler

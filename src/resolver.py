@@ -14,12 +14,21 @@ class Context:
         self.function_handlers = collections.deque()
 
 
+    def handle_expression(self, tree):
+        handler = util.cond(self.function_handlers)
+        return handler(self, tree)
+
+
     def value_expression(self, tree):
-        pass
+        result = self.handle_expression(tree)
+        # TODO: Do some checking that this is a value
+        return result
 
 
     def bool_expression(self, tree):
-        pass
+        result = self.handle_expression(tree)
+        # TODO: Do some checking that this is a boolean
+        return result
 
 
 def make_context():
@@ -38,7 +47,7 @@ def context_add_handler(context, handler):
 
 def make_checker(string):
     def checker(context, tree):
-        return string in tree
+        return isinstance(tree, dict) and string in tree
     return checker
 
 
@@ -72,8 +81,24 @@ def make_type_handler(target_type):
 
 
 def make_comparison_handler(string, oper):
-    return (make_checker(string), make_comparison_resolver(string, oper))
+    return make_checker(string), make_comparison_resolver(string, oper)
 
+
+def make_numeric_iterable_handler(string, oper):
+    def handle_numeric_iterable(context, tree):
+        expressions = tree[string]
+        handle_expr = lambda expr: context.value_expression(expr)
+        values = util.map_now(handle_expr, expressions)
+        return oper(values)
+    return make_checker(string), handle_numeric_iterable
+
+def make_bool_iterable_handler(string, oper):
+    def handle_bool_iterable(context, tree):
+        expressions = tree[string]
+        handle_expr = lambda expr: context.bool_expression(expr)
+        values = util.map_now(handle_expr, expressions)
+        return oper(values)
+    return make_checker(string), handle_bool_iterable
 
 def add_builtin_functions(context):
     # Set up data for reducer functions
@@ -82,11 +107,23 @@ def add_builtin_functions(context):
         ('-', operator.sub),
         ('*', operator.mul),
         ('/', operator.truediv),
-        ('MAX', max),
-        ('MIN', min)
     ]
     def add_reduction_function(string, oper):
         context_add_handler(context, make_reduction_handler(string, oper))
+
+    numeric_iterable_functions = [
+        ('MAX', max),
+        ('MIN', min)
+    ]
+    def add_numeric_iterable_function(string, oper):
+        context_add_handler(context, make_numeric_iterable_handler(string, oper))
+
+    bool_iterable_functions = [
+        ('AND', all),
+        ('OR', any)
+    ]
+    def add_bool_iterable_function(string, oper):
+        context_add_handler(context, make_bool_iterable_handler(string, oper))
 
     # Set up data for comparison functions
     comparison_functions = [
@@ -102,6 +139,8 @@ def add_builtin_functions(context):
 
     # Add comparison functions and type functions
     util.map_now(lambda val: add_reduction_function(*val), reducer_functions)
+    util.map_now(lambda val: add_numeric_iterable_function(*val), numeric_iterable_functions)
+    util.map_now(lambda val: add_bool_iterable_function(*val), bool_iterable_functions)
     util.map_now(lambda val: add_comparison_function(*val), comparison_functions)
     context_add_handler(context, make_type_handler(bool))
     context_add_handler(context, make_type_handler(int))
@@ -146,7 +185,7 @@ def result_get_or_add_goal(result, rule):
 def result_update_resolved_goal(result, rule, points):
     goal = result_get_or_add_goal(result, rule)
     goal_add_points(goal, points)
-    goal_add_resolved_rule(rule, points)
+    goal_add_resolved_rule(goal, rule, points)
 
 
 def result_update_failed_goal(result, rule):
