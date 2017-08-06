@@ -8,7 +8,6 @@ def test_resolve_basic():
     assert len(ruleset.rules) == 1
 
     context = resolver.make_context()
-    resolver.context_use_zero_resolver(context)
     result = resolver.resolve(ruleset, context)
     assert any(goal.name == 'resolve-basic-goal' and goal.points == 1
                for goal in result.goals)
