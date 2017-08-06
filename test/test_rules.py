@@ -1,20 +1,6 @@
-from pathlib import Path
 import rules
 import pytest
-
-
-def read_file(fpath, mode='r'):
-    with open(fpath.as_posix(), mode) as f:
-        data = f.read()
-    return data
-
-
-def get_rule_directory():
-    return Path('rules')
-
-
-def get_rule_file(fname):
-    return get_rule_directory() / fname
+from utiltest import *
 
 
 def test_hello_world():

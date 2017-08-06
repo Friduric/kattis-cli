@@ -1,0 +1,16 @@
+{
+  "rules": [
+    {
+      "needs": {
+        "OR": [
+          false,
+          true
+        ]
+      },
+
+      "towards": "resolve-basic-goal",
+
+      "points": 1
+    }
+  ]
+}
