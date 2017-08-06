@@ -8,3 +8,8 @@ def consume(iterator, n=None):
         collections.deque(iterator, maxlen=0)
     else:
         next(itertools.islice(iterator, n, n), None)
+
+
+def map_now(function, *iterables):
+    iterator = map(function, *iterables)
+    return consume(iterator)

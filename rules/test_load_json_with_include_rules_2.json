@@ -1,0 +1,9 @@
+{
+  "rules": [
+    {
+      "needs": true,
+      "towards": "test",
+      "points": 1
+    }
+  ]
+}

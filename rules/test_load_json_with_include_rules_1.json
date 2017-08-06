@@ -1,0 +1,5 @@
+{
+  "includes": [
+    "rules/test_load_json_with_include_rules_2.json"
+  ]
+}
