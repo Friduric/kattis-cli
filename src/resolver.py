@@ -30,6 +30,8 @@ class Context:
         # TODO: Do some checking that this is a boolean
         return result
 
+    def get_goal_value(self, goal):
+        return 0
 
 def make_context():
     context = Context()
@@ -102,7 +104,7 @@ def make_numeric_handler(string, oper):
     return make_general_handler(string, operand, util.list_wrap, handle_expression)
 
 
-def add_get_handler(context):
+def make_get_handler():
     handle_expression = lambda context, expr: context.get_goal_value(expr)
     return make_general_handler('get', util.list_unwrap, util.list_wrap, handle_expression)
 
@@ -149,7 +151,7 @@ def add_builtin_functions(context):
             context_add_handler(context, handler(string, oper))
         util.map_now(lambda values: adder(*values), provided_functions)
 
-    add_get_handler(context)
+    context_add_handler(context, make_get_handler())
     util.map_now(lambda values: add_handler(*values), handler_makers)
     context_add_handler(context, make_type_handler(bool))
     context_add_handler(context, make_type_handler(int))

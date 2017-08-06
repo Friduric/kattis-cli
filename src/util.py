@@ -34,4 +34,4 @@ def list_wrap(elem):
     return [elem]
 
 def list_unwrap(values):
-    return find(lambda: True, values)
+    return find(lambda x: True, values)
