@@ -47,3 +47,17 @@ def test_circular_include():
     rule_path = get_rule_file('test_load_circular_import_1.json')
     ruleset = rules.parse_file(rule_path.as_posix())
     assert len(ruleset.rules) == 2
+
+
+def test_inspect_simple_rule():
+    rule_path = get_rule_file('test_inspect_simple_rule.json')
+    ruleset = rules.parse_file(rule_path.as_posix())
+    assert len(ruleset.rules) == 1
+
+    rule = ruleset.rules[0]
+    assert rule.needs == "inspect-need"
+    assert rule.towards == "inspect-towards"
+    assert rule.points == 1
+    assert rule.deadline == "01-01-2017 08:00"
+    assert rule.name == "Inspect Rule"
+    assert rule.after == "halved"
