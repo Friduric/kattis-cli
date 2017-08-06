@@ -1,5 +1,6 @@
 from pathlib import Path
 import rules
+import pytest
 
 
 def read_file(fpath, mode='r'):
@@ -37,3 +38,12 @@ def test_load_json_with_include():
     rule_path = get_rule_file('test_load_json_with_include_rules_1.json')
     ruleset = rules.parse_file(rule_path.as_posix())
     assert len(ruleset.rules) == 1
+
+
+# Should only include like 2 files, if this takes longer than 10
+# seconds and "runs as it should" then we have bigger problems....
+@pytest.mark.timeout(10)
+def test_circular_include():
+    rule_path = get_rule_file('test_load_circular_import_1.json')
+    ruleset = rules.parse_file(rule_path.as_posix())
+    assert len(ruleset.rules) == 2

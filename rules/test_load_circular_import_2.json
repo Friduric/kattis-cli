@@ -1,0 +1,12 @@
+{
+  "includes": [
+    "rules/test_load_circular_import_1.json"
+  ],
+  "rules": [
+    {
+      "needs": true,
+      "points": 1,
+      "towards": "circular-import-2"
+    }
+  ]
+}
