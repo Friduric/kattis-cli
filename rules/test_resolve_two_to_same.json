@@ -1,0 +1,14 @@
+{
+  "rules": [
+    {
+      "needs": true,
+      "towards": "resolve-two-of-same",
+      "points": 1
+    },
+    {
+      "needs": true,
+      "towards": "resolve-two-of-same",
+      "points": 1
+    }
+  ]
+}
