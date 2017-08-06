@@ -4,6 +4,10 @@ import util
 import os
 
 
+##########################################
+# Ruleset                                #
+##########################################
+
 Ruleset = collections.namedtuple('Ruleset', 'rules')
 
 
@@ -13,6 +17,38 @@ def make_ruleset():
 
 def ruleset_add_rule(ruleset, rule):
     ruleset.rules.append(rule)
+
+
+##########################################
+# Rule                                   #
+##########################################
+
+
+Rule = collections.namedtuple('Rule', 'needs towards points deadline name late')
+
+
+def make_rule(needs, towards, points, deadline='', name='', late=''):
+    return Rule(needs, towards, points, deadline, name, late)
+
+
+def make_rule_from_json(json):
+    def crash_get(key):
+        return json[key]
+
+    def get_or_default(key, default=''):
+        return json.get(key, default)
+
+    mandatory = ['needs', 'towards', 'points']
+    nonmandatory = ['deadline', 'name', 'late']
+
+    needs, towards, points = map(crash_get, mandatory)
+    deadline, name, late = map(get_or_default, nonmandatory)
+    return make_rule(needs, towards, points, deadline, name, late)
+
+
+##########################################
+# File Helpers                           #
+##########################################
 
 
 def get_element_from_file(fpath, key, default):
@@ -42,10 +78,15 @@ def get_include_group(includes):
     return list(included_files)
 
 
+##########################################
+# Parsing                                #
+##########################################
+
+
 def parse_json(json, _from_file=''):
     # Create ruleset and add rules from json
     ruleset = make_ruleset()
-    add_rule = lambda rule: ruleset_add_rule(ruleset, rule)
+    add_rule = lambda rule: ruleset_add_rule(ruleset, make_rule_from_json(rule))
     rules = json.get('rules', [])
     util.map_now(add_rule, rules)
 
