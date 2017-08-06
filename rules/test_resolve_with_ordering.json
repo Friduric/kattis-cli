@@ -1,0 +1,36 @@
+{
+  "rules": [
+    {
+      "needs": true,
+      "towards": "goal-1",
+      "points": 1
+    },
+    {
+      "needs": { "positive": { "get": "goal-1" } },
+      "towards": "goal-2",
+      "points": 1
+    },
+    {
+      "needs": { "positive": { "get": "goal-2" } },
+      "towards": "goal-3",
+      "points": 1
+    },
+    {
+      "needs": { "positive": { "get": "goal-3" } },
+      "towards": "goal-4",
+      "points": 1
+    },
+    {
+      "needs": {
+        "AND": [
+          { "positive": { "get": "goal-1" } },
+          { "positive": { "get": "goal-2" } },
+          { "positive": { "get": "goal-3" } },
+          { "positive": { "get": "goal-4" } }
+        ]
+      },
+      "towards": "goal-5",
+      "points": 1
+    }
+  ]
+}

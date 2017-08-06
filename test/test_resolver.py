@@ -1,3 +1,4 @@
+import random
 import rules
 import resolver
 from utiltest import *
@@ -26,3 +27,14 @@ def test_resolve_two_to_same():
     assert goal.name == 'resolve-two-of-same' and goal.points == 2 and \
         len(goal.resolved_rules) == 2 and len(goal.non_resolved_rules) == 0
 
+
+def test_resolve_with_ordering():
+    rule_path = get_rule_file('test_resolve_with_ordering.json')
+    ruleset = rules.parse_file(rule_path.as_posix())
+    random.shuffle(ruleset.rules) # Shuffle the rules, the order should not make a difference
+    assert len(ruleset.rules) == 5
+
+    context = resolver.make_context()
+    result = resolver.resolve(ruleset, context)
+    assert len(result.goals) == 5
+    assert all(goal.points == 1 for goal in result.goals)

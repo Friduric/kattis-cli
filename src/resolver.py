@@ -252,5 +252,4 @@ def resolve(ruleset, context):
         util.crossroad(lambda: needs, success, fail)
 
     util.map_now(process_rule, rules)
-    print(result.goals[0])
     return result
