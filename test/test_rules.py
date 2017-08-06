@@ -61,3 +61,64 @@ def test_inspect_simple_rule():
     assert rule.deadline == "01-01-2017 08:00"
     assert rule.name == "Inspect Rule"
     assert rule.late == "halved"
+
+
+def test_inspect_complex_rule():
+    rule_path = get_rule_file('test_inspect_complex_rule.json')
+    ruleset = rules.parse_file(rule_path.as_posix())
+    assert len(ruleset.rules) == 1
+
+    need_expression = {
+        "OR": [
+            False,
+            {
+                "positive": {
+                    "get": "some-other-goal"
+                }
+            },
+            {
+                ">": {
+                    "lhs": 4,
+                    "rhs": 2
+                }
+            }
+        ]
+    }
+
+    value_expression = {
+        "+": [
+            1,
+            2,
+            3,
+            {
+                "*": [
+                    4,
+                    2
+                ]
+            },
+            {
+                "-": [
+                    4,
+                    3,
+                    1
+                ]
+            },
+            {
+                "/": [
+                    42,
+                    21
+                ]
+            },
+            {
+                "get": "another-goal"
+            },
+            {
+                "MAX": [1, 2, 1]
+            }
+        ]
+    }
+
+    rule = ruleset.rules[0]
+    assert rule.needs == need_expression
+    assert rule.towards == "inspect-complex-towards"
+    assert rule.points == value_expression

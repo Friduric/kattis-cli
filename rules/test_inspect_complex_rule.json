@@ -1,0 +1,42 @@
+{
+  "rules": [
+    {
+      "needs": {
+        "OR": [
+          false,
+          {
+            "positive": { "get": "some-other-goal" }
+          },
+          {
+            ">": {
+              "lhs": 4,
+              "rhs": 2
+            }
+          }
+        ]
+      },
+
+      "towards": "inspect-complex-towards",
+      "points": {
+        "+": [
+          1, 2, 3,
+          {
+            "*": [ 4, 2 ]
+          },
+          {
+            "-": [ 4, 3, 1 ]
+          },
+          {
+            "/": [ 42, 21 ]
+          },
+          {
+            "get": "another-goal"
+          },
+          {
+            "MAX": [1, 2, 1]
+          }
+        ]
+      }
+    }
+  ]
+}
