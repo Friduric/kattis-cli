@@ -31,3 +31,9 @@ def test_load_json_from_file():
     rule_path = get_rule_file('test_load_json_from_file_rules.json')
     ruleset = rules.parse_file(rule_path.as_posix())
     assert len(ruleset.rules) == 1
+
+
+def test_load_json_with_include():
+    rule_path = get_rule_file('test_load_json_with_include_rules_1.json')
+    ruleset = rules.parse_file(rule_path.as_posix())
+    assert len(ruleset.rules) == 1
