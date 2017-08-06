@@ -1,6 +1,7 @@
 import collections
 import json
 import util
+import os
 
 
 Ruleset = collections.namedtuple('Ruleset', 'rules')
@@ -40,7 +41,8 @@ def get_include_group(includes):
         queue.extend(added_includes)
     return list(included_files)
 
-def parse_json(json):
+
+def parse_json(json, _from_file=''):
     # Create ruleset and add rules from json
     ruleset = make_ruleset()
     add_rule = lambda rule: ruleset_add_rule(ruleset, rule)
@@ -49,9 +51,13 @@ def parse_json(json):
 
     # Find all includes and include their rules as well
     include_group = get_include_group(json.get('includes', []))
+    def is_not_origin(fpath):
+        return os.path.abspath(fpath) != os.path.abspath(_from_file)
     def add_rules_from_file(fpath):
         util.map_now(add_rule, get_rules_from_file(fpath))
-    util.map_now(add_rules_from_file, include_group)
+
+    include_group_except_self = filter(is_not_origin, include_group)
+    util.map_now(add_rules_from_file, include_group_except_self)
 
     return ruleset
 
@@ -64,4 +70,4 @@ def parse_string(content):
 def parse_file(fpath):
     with open(fpath, 'r') as f:
         parsed = json.load(f)
-    return parse_json(parsed)
+    return parse_json(parsed, _from_file=fpath)
