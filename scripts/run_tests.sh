@@ -1,2 +1,2 @@
-export PYTHONPATH=./src
+export PYTHONPATH=./src:./plugins
 pytest
