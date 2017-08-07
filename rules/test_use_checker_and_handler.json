@@ -1,0 +1,14 @@
+{
+  "rules": [
+    {
+      "needs": { "solved": "testproblem" },
+      "towards": "test-problem",
+      "points": 1
+    },
+    {
+      "needs": { "solved": "testproblem2" },
+      "towards": "test-problem-2",
+      "points": 1
+    }
+  ]
+}

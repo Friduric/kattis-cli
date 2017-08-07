@@ -18,3 +18,6 @@ class KattisResult:
 
     def add_WA(self, id, time):
         self.WA.append(make_submission(id, time, 'WA'))
+
+    def get_plugin(self):
+        pass
