@@ -20,4 +20,8 @@ class KattisResult:
         self.WA.append(make_submission(id, time, 'WA'))
 
     def get_plugin(self):
-        pass
+        def checker(context, tree):
+            return isinstance(tree, dict) and 'solved' in tree
+        def handler(context, tree):
+            return any(result.id == tree['solved'] for result in self.AC)
+        return checker, handler
