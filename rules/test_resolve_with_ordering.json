@@ -19,13 +19,16 @@
       "needs": {
         "AND": [
           { "positive": { "get": "goal-1" } },
-          { "positive": { "get": "goal-2" } },
-          { "positive": { "get": "goal-3" } },
           { "positive": { "get": "goal-4" } }
         ]
       },
       "towards": "goal-5",
-      "points": 1
+      "points": {
+        "*": [
+          { "get": "goal-2" },
+          { "get": "goal-3" }
+        ]
+      }
     },
     {
       "needs": true,

@@ -1,3 +1,4 @@
+import copy
 import collections
 import util
 import functools
@@ -150,10 +151,10 @@ def add_builtin_functions(context):
     def add_handler(handler, provided_functions):
         def adder(string, oper):
             context_add_handler(context, handler(string, oper))
-        util.map_now(lambda values: adder(*values), provided_functions)
+        util.starmap_now(adder, provided_functions)
 
     context_add_handler(context, make_get_handler())
-    util.map_now(lambda values: add_handler(*values), handler_makers)
+    util.starmap_now(add_handler, handler_makers)
     context_add_handler(context, make_type_handler(bool))
     context_add_handler(context, make_type_handler(int))
 
@@ -251,12 +252,98 @@ def goal_add_non_resolved_rule(goal, rule):
 
 
 ##########################################
-# Resolver function                      #
+# Topological Sort                       #
 ##########################################
 
 
+def find_expressions(expr, root):
+    result = []
+
+    def is_correct_expression(tree):
+        return isinstance(tree, dict) and expr in tree
+    def is_expression(tree):
+        return isinstance(tree, dict)
+    def is_list(tree):
+        return isinstance(tree, list)
+
+    def add_expression(tree):
+        result.append(copy.deepcopy(tree))
+    def find_in_children(tree):
+        return find_expression_rec(list(tree.values()))
+    def search_in_list(seq):
+        return util.map_now(find_expression_rec, seq)
+
+    def find_expression_rec(tree):
+        util.cond([
+            (is_correct_expression, util.combine(add_expression, find_in_children)),
+            (is_expression, find_in_children),
+            (is_list, search_in_list)
+        ])(tree)
+
+    find_expression_rec(root)
+    return result
+
 def topological_order(rules):
-    return range(len(rules))
+    # 1. Find each rule and the goals that it depends on
+    # 2. Create a dependency tree where each rule depends
+    #    on all rules that go towards what they depend on
+    # 3. Solve dependency with toposort
+
+    goal_dependencies = collections.defaultdict(set)
+    def find_and_add_goals(index, rule):
+        get_need = find_expressions('get', rule.needs)
+        get_point = find_expressions('get', rule.points)
+        all_goals = get_need + get_point
+        add_goal = lambda expr: goal_dependencies[index].add(expr['get'])
+        util.map_now(add_goal, all_goals)
+
+    util.starmap_now(find_and_add_goals, enumerate(rules))
+
+
+    def is_dependency_rule(index, original_idx):
+        return rules[index].towards in goal_dependencies[original_idx]
+    def find_rule_dependency(index):
+        indices = range(len(rules))
+        # Note: also include self, because we can have the case that a user writes
+        # a rule that depends on itself being completed...
+        indexes_to_add = filter(lambda idx: is_dependency_rule(idx, index), indices)
+        return list(indexes_to_add)
+
+    rule_dependency = util.map_now(find_rule_dependency, range(len(rules)))
+    rule_rev_dependency = [[] for _ in range(len(rules))]
+    def add_rev_dependency(key, values):
+        util.map_now(lambda val: rule_rev_dependency[val].append(key), values)
+    util.starmap_now(add_rev_dependency, enumerate(rule_dependency))
+    connection_count = [len(x) for x in rule_dependency]
+
+    # rule_rev_dependency is our dependency mapping and connection_count count
+    # how many unsolved we depend on
+
+    def should_add_to_queue(index):
+        return connection_count[index] == 0
+    def add_to_queue(index):
+        queue.append(index)
+    def process_item(index):
+        connection_count[index] -= 1
+        predicate = lambda: should_add_to_queue(index)
+        success = lambda: add_to_queue(index)
+        util.crossroad(predicate, success, util.noop)
+    queue = list(filter(should_add_to_queue, range(len(rules))))
+
+    idx = 0
+    # We need to continuously evaluate the length of the queue so we
+    # need to run with a while loop -.-
+    while idx < len(queue):
+        item = queue[idx]
+        util.map_now(process_item, rule_rev_dependency[item])
+        idx += 1
+
+    return queue
+
+
+##########################################
+# Resolver function                      #
+##########################################
 
 
 def resolve(ruleset, context):

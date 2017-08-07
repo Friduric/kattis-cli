@@ -4,13 +4,16 @@ def map_now(function, *iterables):
     '''A map equivalent that applies directly.'''
     return list(map(function, *iterables))
 
+def starmap_now(function, iterable):
+    return list(map(lambda value: function(*value), iterable))
+
 def crossroad(go_left, on_go_left, on_go_right):
     if go_left():
         return on_go_left()
     else:
         return on_go_right()
 
-def noop():
+def noop(*args, **kwargs):
     pass
 
 def take(n, iterable):
@@ -35,3 +38,15 @@ def list_wrap(elem):
 
 def list_unwrap(values):
     return find(lambda x: True, values)
+
+def combine(*functions):
+    '''Combines several functions into one function.'''
+    def inner(*args, **kwargs):
+        return map_now(lambda func: func(*args, **kwargs), functions)
+    return inner
+
+def truthy(*args, **kwargs):
+    return True
+
+def falsy(*args, **kwargs):
+    return False
