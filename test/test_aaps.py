@@ -28,6 +28,23 @@ def test_use_checker_and_handler():
     func = lambda c, h: resolver.context_add_plugin(context, c, h)
     util.starmap_now(func, plugins)
     result = resolver.resolve(ruleset, context)
+
     assert len(result.goals) == 2
     assert any(goal.points == 1 and goal.id == 'test-problem' for goal in result.goals)
     assert any(goal.points == 0 and goal.id == 'test-problem-2' for goal in result.goals)
+
+def test_after_deadline():
+    rule_path = get_rule_file('test_after_deadline.json')
+    ruleset = rules.parse_file(rule_path.as_posix())
+    assert len(ruleset.rules) == 1
+
+    kattis = aaps.KattisResult()
+    kattis.add_AC('testproblem', '01-01-2017 08:00')
+    context = resolver.make_context()
+    plugins = kattis.get_plugins()
+    func = lambda c, h: resolver.context_add_plugin(context, c, h)
+    util.starmap_now(func, plugins)
+    result = resolver.resolve(ruleset, context)
+
+    assert len(result.goals) == 1
+    assert result.goals[0].points == 1 # Halved from 2
