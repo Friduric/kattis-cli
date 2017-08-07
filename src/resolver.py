@@ -256,7 +256,7 @@ def goal_add_non_resolved_rule(goal, rule):
 
 
 def topological_order(rules):
-    pass
+    return range(len(rules))
 
 
 def resolve(ruleset, context):
@@ -276,5 +276,9 @@ def resolve(ruleset, context):
         fail = lambda: on_rule_fail(rule)
         util.crossroad(lambda: needs, success, fail)
 
-    util.map_now(process_rule, rules)
+    def process_by_index(index):
+        process_rule(rules[index])
+
+    order = topological_order(rules)
+    util.map_now(process_by_index, order)
     return result
