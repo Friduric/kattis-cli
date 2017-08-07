@@ -50,7 +50,8 @@ def context_set_result(context, result):
 
 
 def context_add_plugin(context, checker, handler):
-    pass
+    # Plugins have priority over built-in functions
+    context.function_handlers.appendleft((checker, handler))
 
 ##########################################
 # Builtin functions for context          #
