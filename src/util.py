@@ -50,3 +50,8 @@ def truthy(*args, **kwargs):
 
 def falsy(*args, **kwargs):
     return False
+
+def constant(value):
+    def inner(*args, **kwargs):
+        return value
+    return inner

@@ -7,7 +7,8 @@
         "late": {
           "before": 2,
           "after": 1,
-          "deadline": "01-01-2017 07:00"
+          "deadline": "01-01-2017 07:00",
+          "problem": "testproblem"
         }
       }
     }
