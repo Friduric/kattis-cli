@@ -1,6 +1,7 @@
 import aaps
 import rules
 import resolver
+import util
 from utiltest import *
 
 def test_kattis_result():
@@ -23,8 +24,9 @@ def test_use_checker_and_handler():
     kattis.add_WA('testproblem2', '01-01-2017 08:00')
 
     context = resolver.make_context()
-    checker, handler = kattis.get_plugin()
-    resolver.context_add_plugin(context, checker, handler)
+    plugins = kattis.get_plugins()
+    func = lambda c, h: resolver.context_add_plugin(context, c, h)
+    util.starmap_now(func, plugins)
     result = resolver.resolve(ruleset, context)
     assert len(result.goals) == 2
     assert any(goal.points == 1 and goal.id == 'test-problem' for goal in result.goals)
