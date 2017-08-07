@@ -49,6 +49,9 @@ def context_set_result(context, result):
     context.result = result
 
 
+def context_add_plugin(context, checker, handler):
+    pass
+
 ##########################################
 # Builtin functions for context          #
 ##########################################

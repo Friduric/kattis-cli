@@ -1,0 +1,9 @@
+{
+  "rules": [
+    {
+      "needs": true,
+      "towards": "custom-plugin",
+      "points": { "identity": 42 }
+    }
+  ]
+}

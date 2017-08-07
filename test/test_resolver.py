@@ -37,3 +37,19 @@ def test_resolve_with_ordering():
     result = resolver.resolve(ruleset, context)
     assert len(result.goals) == 5
     assert all(goal.points == 1 for goal in result.goals)
+
+
+def test_custom_plugin():
+    def checker(context, tree):
+        return isinstance(tree, dict) and 'identity' in tree
+    def handler(context, tree):
+        return tree['identity']
+    rule_path = get_rule_file('test_custom_plugin.json')
+    ruleset = rules.parse_file(rule_path.as_posix())
+    assert len(ruleset.rules) == 1
+
+    context = resolver.make_context()
+    resolver.context_add_plugin(context, checker, handler)
+    result = resolver.resolve(ruleset, context)
+    assert len(result.goals) == 1
+    assert all(goal.points == 42 for goal in result.goals)
