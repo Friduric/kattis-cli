@@ -1,0 +1,17 @@
+{
+  "rules": [
+    {
+      "needs": true,
+      "towards": "uppgift-test",
+      "points": {
+        "uppgift": {
+          "deadline": "01-01-2017 08:00",
+          "problems": [
+            "helloworld",
+            "helloworld2"
+          ]
+        }
+      }
+    }
+  ]
+}
