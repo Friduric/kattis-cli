@@ -4,8 +4,8 @@
       "needs": true,
       "towards": "testsession",
       "points": {
-        "uppgift": {
-          "deadline": "01-01-2017 12:00",
+        "session": {
+          "end": "01-01-2017 12:00",
           "problems": [
             "testproblem1",
             "testproblem2",

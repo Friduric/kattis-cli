@@ -69,7 +69,7 @@ def test_uppgift():
     assert result.goals[0].points == 2
 
 
-def test_session_uppgift():
+def test_session():
     ruleset = get_ruleset_from_file('test_session_uppgift.json')
     assert len(ruleset.rules) == 1
 
