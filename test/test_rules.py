@@ -35,6 +35,17 @@ def test_circular_include():
     assert len(ruleset.rules) == 2
 
 
+def test_only_towards_necessary():
+    rule_path = get_rule_file('test_only_towards_necessary.json')
+    ruleset = rules.parse_file(rule_path.as_posix())
+    assert len(ruleset.rules) == 1
+
+    rule = ruleset.rules[0]
+    assert rule.towards == 'only-towards-necessary'
+    assert rule.points
+    assert rule.needs
+
+
 def test_inspect_simple_rule():
     rule_path = get_rule_file('test_inspect_simple_rule.json')
     ruleset = rules.parse_file(rule_path.as_posix())

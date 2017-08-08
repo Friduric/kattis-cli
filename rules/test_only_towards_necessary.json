@@ -1,0 +1,7 @@
+{
+  "rules": [
+    {
+      "towards": "only-towards-necessary"
+    }
+  ]
+}
