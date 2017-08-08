@@ -82,3 +82,17 @@ def test_session():
 
     assert len(result.goals) == 1
     assert result.goals[0].points == 9
+
+
+def test_lab():
+    ruleset = get_ruleset_from_file('test_lab.json')
+    assert len(ruleset.rules) == 1
+
+    kattis = aaps.KattisResult()
+    kattis.add_AC('labproblem1', '01-01-2017 08:00')
+    kattis.add_AC('labproblem2', '01-01-2017 07:00')
+
+    result = resolve_for_result(kattis, ruleset)
+
+    assert len(result.goals) == 1
+    assert result.goals[0].points == 2

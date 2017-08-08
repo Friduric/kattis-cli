@@ -1,0 +1,17 @@
+{
+  "rules": [
+    {
+      "needs": true,
+      "towards": "lab-test",
+      "points": {
+        "uppgift": {
+          "problems": [
+            "labproblem1",
+            "labproblem2",
+            "labproblem3"
+          ]
+        }
+      }
+    }
+  ]
+}
