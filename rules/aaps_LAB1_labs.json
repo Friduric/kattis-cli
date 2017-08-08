@@ -1,0 +1,71 @@
+{
+  "rules": [
+    {
+      "towards": "LAB1-lab1"
+      "uppgift": {
+        "problems": [
+          "intervalcover",
+          "knapsack",
+          "longincsubseq",
+          "unionfind",
+          "fenwick",
+          "polymul2",
+          "equationsolver",
+          "equationsolverplus"
+        ]
+      }
+    },
+
+    {
+      "towards": "LAB1-lab2",
+      "uppgift": {
+        "problems": [
+          "shortestpath1",
+          "shortestpath2",
+          "shortestpath3",
+          "allpairspath",
+          "minspantree",
+          "maxflow",
+          "mincostmaxflow",
+          "eulerianpath"
+        ]
+      }
+    },
+
+    {
+      "towards": "LAB1-lab3",
+      "uppgift": {
+        "problems": [
+          "stringmatching",
+          "stringmultimatching",
+          {
+            "id": "suffixsorting",
+            "points": 2
+          },
+          "rationalarithmetic",
+          "modulararithmetic",
+          "chineseremainder",
+          "generalchineseremainder",
+          "primesieve"
+        ]
+      }
+    },
+
+    {
+      "towards": "LAB1-lab4",
+      "uppgift": {
+        "problems": [
+          "polygonarea",
+          "pointinpolygon",
+          "segmentintersection",
+          "segmentdistance",
+          "closestpair1",
+          "closestpair2",
+          "convexhull",
+          "maxcolinear",
+          "linearrecurrence"
+        ]
+      }
+    }
+  ]
+}

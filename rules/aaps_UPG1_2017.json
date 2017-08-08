@@ -1,0 +1,377 @@
+{
+  "rules": [
+    {
+      "towards": "UPG1-week1",
+      "points": {
+        "uppgift": {
+          "deadline": "24-01-2017 08:00",
+          "problems": [
+            "aspenavenue",
+            "help2",
+            "ljutnja",
+            "spiderman"
+          ]
+        }
+      }
+    },
+
+    {
+      "towards": "UPG1-week2",
+      "points": {
+        "uppgift": {
+          "deadline": "31-01-2017 08:00",
+          "problems": [
+            "caching",
+            "chopwood",
+            "setstack",
+            "turbo"
+          ]
+        }
+      }
+    },
+
+    {
+      "towards": "UPG1-week3",
+      "points": {
+        "uppgift": {
+          "deadline": "08-02-2017 10:00",
+          "problems": [
+            "deadfraction",
+            "ignore",
+            "perfectpowers",
+            "threedigits"
+          ]
+        }
+      }
+    },
+
+    {
+      "towards": "UPG1-week4",
+      "points": {
+        "uppgift": {
+          "deadline": "15-02-2017 10:00",
+          "problems": [
+            "cudak",
+            "funnygames",
+            "squarefieldshard",
+            "uxuhulvoting"
+          ]
+        }
+      }
+    },
+
+    {
+      "towards": "UPG1-week5",
+      "points": {
+        "uppgift": {
+          "deadline": "22-02-2017 10:00",
+          "problems": [
+            "borg",
+            "equivalences",
+            "frogger",
+            "gold"
+          ]
+        }
+      }
+    },
+
+    {
+      "towards": "UPG1-week6",
+      "points": {
+        "uppgift": {
+          "deadline": "28-02-2017 08:00",
+          "problems": [
+            "councilling",
+            "fulltank",
+            "george",
+            "islandhopping"
+          ]
+        }
+      }
+    },
+
+    {
+      "towards": "UPG1-week7",
+      "points": {
+        "uppgift": {
+          "deadline": "07-03-2017 08:00",
+          "problems": [
+            "getshorty",
+            "hidingplaces",
+            "risk",
+            "xyzzy"
+          ]
+        }
+      }
+    },
+
+    {
+      "towards": "UPG1-week8",
+      "points": {
+        "uppgift": {
+          "deadline": "29-03-2017 08:00",
+          "problems": [
+            "jackjill",
+            "towers",
+            "unfairplay",
+            "whacamole"
+          ]
+        }
+      }
+    },
+
+    {
+      "towards": "UPG1-week9",
+      "points": {
+        "uppgift": {
+          "deadline": "07-04-2017 13:00",
+          "problems": [
+            "dictionaryattack",
+            "dominant",
+            "evilstraw",
+            "intellectualproperty"
+          ]
+        }
+      }
+    },
+
+    {
+      "towards": "UPG1-week10",
+      "points": {
+        "uppgift": {
+          "deadline": "12-04-2017 08:00",
+          "problems": [
+            "codetheft",
+            "lifeforms",
+            "messages",
+            "suffixarrayreconstruction"
+          ]
+        }
+      }
+    },
+
+    {
+      "towards": "UPG1-week11",
+      "points": {
+        "uppgift": {
+          "deadline": "28-04-2017 13:00",
+          "problems": [
+            "gokigen",
+            "maxloot",
+            "amiga",
+            "satisfiability"
+          ]
+        }
+      }
+    },
+
+    {
+      "towards": "UPG1-week12",
+      "points": {
+        "uppgift": {
+          "deadline": "05-05-2017 13:00",
+          "problems": [
+            "circularlock",
+            "factovisors",
+            "happyprime",
+            "rasterized"
+          ]
+        }
+      }
+    },
+
+    {
+      "towards": "UPG1-week13",
+      "points": {
+        "uppgift": {
+          "deadline": "10-05-2017 13:00",
+          "problems": [
+            "barktree",
+            "wrapping",
+            "trilemma",
+            "rafting"
+          ]
+        }
+      }
+    },
+
+    {
+      "towards": "UPG1-week14",
+      "points": {
+        "uppgift": {
+          "deadline": "19-05-2017 13:00",
+          "problems": [
+            "bagoftiles",
+            "howmanyzeros",
+            "organising",
+            "2naire"
+          ]
+        }
+      }
+    },
+
+    {
+      "towards": "UPG1-hard",
+      "points": {
+        "problems": [
+          "aspenavenue",
+          "caching",
+          "deadfraction",
+          "funnygames",
+          "equivalences",
+          "councilling",
+          "risk",
+          "towers",
+          "intellectualproperty",
+          "lifeforms",
+          "maxloot",
+          "rasterized",
+          "barktree",
+          "organising"
+        ]
+      }
+    },
+
+    {
+      "needs": {
+        ">": {
+          "lhs": { "get" : "UPG1-week1" },
+          "rhs": 0
+        }
+      }
+      "towards": "week1-solved",
+      "points": 1
+    },
+    {
+      "needs": {
+        ">": {
+          "lhs": { "get" : "UPG1-week2" },
+          "rhs": 0
+        }
+      }
+      "towards": "week2-solved",
+      "points": 1
+    },
+    {
+      "needs": {
+        ">": {
+          "lhs": { "get" : "UPG1-week3" },
+          "rhs": 0
+        }
+      }
+      "towards": "week3-solved",
+      "points": 1
+    },
+    {
+      "needs": {
+        ">": {
+          "lhs": { "get" : "UPG1-week4" },
+          "rhs": 0
+        }
+      }
+      "towards": "week4-solved",
+      "points": 1
+    },
+    {
+      "needs": {
+        ">": {
+          "lhs": { "get" : "UPG1-week5" },
+          "rhs": 0
+        }
+      }
+      "towards": "week5-solved",
+      "points": 1
+    },
+    {
+      "needs": {
+        ">": {
+          "lhs": { "get" : "UPG1-week6" },
+          "rhs": 0
+        }
+      }
+      "towards": "week6-solved",
+      "points": 1
+    },
+    {
+      "needs": {
+        ">": {
+          "lhs": { "get" : "UPG1-week7" },
+          "rhs": 0
+        }
+      }
+      "towards": "week7-solved",
+      "points": 1
+    },
+    {
+      "needs": {
+        ">": {
+          "lhs": { "get" : "UPG1-week8" },
+          "rhs": 0
+        }
+      }
+      "towards": "week8-solved",
+      "points": 1
+    },
+    {
+      "needs": {
+        ">": {
+          "lhs": { "get" : "UPG1-week9" },
+          "rhs": 0
+        }
+      }
+      "towards": "week9-solved",
+      "points": 1
+    },
+    {
+      "needs": {
+        ">": {
+          "lhs": { "get" : "UPG1-week10" },
+          "rhs": 0
+        }
+      }
+      "towards": "week10-solved",
+      "points": 1
+    },
+    {
+      "needs": {
+        ">": {
+          "lhs": { "get" : "UPG1-week11" },
+          "rhs": 0
+        }
+      }
+      "towards": "week11-solved",
+      "points": 1
+    },
+    {
+      "needs": {
+        ">": {
+          "lhs": { "get" : "UPG1-week12" },
+          "rhs": 0
+        }
+      }
+      "towards": "week12-solved",
+      "points": 1
+    },
+    {
+      "needs": {
+        ">": {
+          "lhs": { "get" : "UPG1-week13" },
+          "rhs": 0
+        }
+      }
+      "towards": "week13-solved",
+      "points": 1
+    },
+    {
+      "needs": {
+        ">": {
+          "lhs": { "get" : "UPG1-week14" },
+          "rhs": 0
+        }
+      }
+      "towards": "week14-solved",
+      "points": 1
+    },
+
+  ]
+}
