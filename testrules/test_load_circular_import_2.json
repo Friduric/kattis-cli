@@ -1,6 +1,6 @@
 {
   "includes": [
-    "rules/test_load_circular_import_1.json"
+    "testrules/test_load_circular_import_1.json"
   ],
   "rules": [
     {

@@ -7,7 +7,7 @@ def read_file(fpath, mode='r'):
 
 
 def get_rule_directory():
-    return Path('rules')
+    return Path('testrules')
 
 
 def get_rule_file(fname):
