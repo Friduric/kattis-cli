@@ -1,6 +1,8 @@
 import collections
 import util
 import time
+import json
+
 
 Submission = collections.namedtuple('Submission', 'id time result')
 
@@ -134,3 +136,56 @@ class KattisResult:
             make_uppgift_handler(self),
             make_session_handler(self)
         ]
+
+
+
+Student = collections.namedtuple('Student', 'username name email submissions')
+
+
+def make_student(username, name, email=''):
+    return Student(username, name, email, [])
+
+
+def student_add_submission(student, submission):
+    student.submissions.append(submission)
+
+
+ExportedKattis = collections.namedtuple('ExportedKattisData', 'students')
+
+
+def make_exported_kattis():
+    return ExportedKattisData([])
+
+
+def exported_kattis_add_student(data, student):
+    data.students.append(student)
+
+
+def read_exported_kattis_file(fpath):
+    with open(fpath, 'r') as fp:
+        content = json.load(fp)
+    json_students = content['students']
+
+    def json_to_submission(submission):
+        problem_id = submission['problem']
+        judgement = submission['judgement']
+        time = submission['time']
+        return make_submission(problem_id, time, judgement)
+
+    def json_to_student(root):
+        username = root.get('username', '[No Username]')
+        name = root.get('name', '[No Name]')
+        email = root.get('email', '')
+        json_submissions = root.get('submissions', [])
+        submissions = util.map_now(json_to_submission, json_submissions)
+        student = make_student(username, name, email)
+        add_sub = lambda sub: student_add_submission(student, sub)
+        util.map_now(add_sub, submissions)
+        return student
+
+    result = make_exported_kattis()
+    students = util.map_now(json_to_student, json_students)
+    add_student = lambda student: exported_kattis_add_student(result, student)
+    util.map_now(add_student, students)
+
+    return result
