@@ -69,8 +69,10 @@ def make_uppgift_handler(kattis):
         return isinstance(tree, dict) and 'uppgift' in tree
 
     def resolver(context, tree):
-        deadline = tree['uppgift']['deadline']
+        # If a problem does not have a deadline, then assume it is a lab
+        # and move the deadline to something like 100 years from now.
         problems = tree['uppgift']['problems']
+        deadline = tree['uppgift'].get('deadline', '01-01-2117 08:00')
         points = lambda problem: count_for_single_problem(problem, deadline)
         return sum(map(points, problems))
 
