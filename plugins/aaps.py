@@ -1,5 +1,6 @@
 import collections
 import util
+import time
 
 Submission = collections.namedtuple('Submission', 'id time result')
 
@@ -15,13 +16,31 @@ def make_solved_handler(kattis):
         return any(result.id == tree['solved'] for result in kattis.AC)
     return checker, resolver
 
+def time_parse(timestr):
+    # %d - day [01-31]
+    # %m - month [01-12]
+    # %Y - year [20XX]
+    # %H - hour [00-23]
+    # %M - minute [00-59]
+    return time.strptime(timestr, '%d-%m-%Y %H:%M')
+
+def time_compare(a, b):
+    return time_parse(a) < time_parse(b)
+
 def make_late_handler(kattis):
+
+    def problem_solved(problem_id):
+        return len(kattis.solutions_for(problem_id)) > 0
+
     def ac_before_deadline(problem_id, deadline):
-        pass
+        return problem_solved(problem_id) and \
+            any(time_compare(solution.time, deadline)
+                for solution in kattis.solutions_for(problem_id))
+
     def ac_after_deadline(problem_id, deadline):
-        pass
-    def nil(problem_id, deadline):
-        return 0
+        return problem_solved(problem_id) and \
+            all(time_compare(deadline, solution.time)
+                for solution in kattis.solutions_for(problem_id))
 
     def checker(context, tree):
         return isinstance(tree, dict) and 'late' in tree
@@ -34,10 +53,11 @@ def make_late_handler(kattis):
         return util.cond([
             (ac_before_deadline, util.constant(before)),
             (ac_after_deadline, util.constant(after)),
-            (util.truthy, nil)
+            (util.truthy, util.constant(0))
         ])(problem_id, deadline)
 
     return checker, resolver
+
 
 class KattisResult:
 
@@ -50,6 +70,9 @@ class KattisResult:
 
     def add_WA(self, id, time):
         self.WA.append(make_submission(id, time, 'WA'))
+
+    def solutions_for(self, problem_id):
+        return util.filter_now(lambda s: s.id == problem_id, self.AC)
 
     def get_plugins(self):
         return [

@@ -7,6 +7,9 @@ def map_now(function, *iterables):
 def starmap_now(function, iterable):
     return list(map(lambda value: function(*value), iterable))
 
+def filter_now(predicate, iterable):
+    return list(filter(predicate, iterable))
+
 def crossroad(go_left, on_go_left, on_go_right):
     if go_left():
         return on_go_left()
