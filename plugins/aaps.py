@@ -28,7 +28,6 @@ def time_compare(a, b):
     return time_parse(a) < time_parse(b)
 
 def make_late_handler(kattis):
-
     def problem_solved(problem_id):
         return len(kattis.solutions_for(problem_id)) > 0
 
@@ -59,6 +58,25 @@ def make_late_handler(kattis):
     return checker, resolver
 
 
+def make_uppgift_handler(kattis):
+    def count_for_single_problem(problem, deadline):
+        solutions = kattis.solutions_for(problem)
+        problem_solved = len(solutions) > 0
+        before_deadline = problem_solved and any(time_compare(s.time, deadline) for s in solutions)
+        return 0.5 * problem_solved + 0.5 * before_deadline
+
+    def checker(context, tree):
+        return isinstance(tree, dict) and 'uppgift' in tree
+
+    def resolver(context, tree):
+        deadline = tree['uppgift']['deadline']
+        problems = tree['uppgift']['problems']
+        points = lambda problem: count_for_single_problem(problem, deadline)
+        return sum(map(points, problems))
+
+    return checker, resolver
+
+
 class KattisResult:
 
     def __init__(self):
@@ -77,5 +95,6 @@ class KattisResult:
     def get_plugins(self):
         return [
             make_solved_handler(self),
-            make_late_handler(self)
+            make_late_handler(self),
+            make_uppgift_handler(self)
         ]

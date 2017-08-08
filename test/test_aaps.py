@@ -61,7 +61,7 @@ def test_uppgift():
 
     kattis = aaps.KattisResult()
     kattis.add_AC('helloworld', '01-01-2017 07:00')
-    kattis.add_AC('helloworld', '01-01-2017 07:00')
+    kattis.add_AC('helloworld2', '01-01-2017 07:00')
 
     result = resolve_for_result(kattis, ruleset)
 
