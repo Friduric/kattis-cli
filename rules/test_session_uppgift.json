@@ -1,0 +1,20 @@
+{
+  "rules": [
+    {
+      "needs": true,
+      "towards": "testsession",
+      "points": {
+        "uppgift": {
+          "deadline": "01-01-2017 12:00",
+          "problems": [
+            "testproblem1",
+            "testproblem2",
+            "testproblem3",
+            "testproblem4"
+          ],
+          "session": true
+        }
+      }
+    }
+  ]
+}

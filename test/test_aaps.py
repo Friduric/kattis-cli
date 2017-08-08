@@ -67,3 +67,18 @@ def test_uppgift():
 
     assert len(result.goals) == 1
     assert result.goals[0].points == 2
+
+
+def test_session_uppgift():
+    ruleset = get_ruleset_from_file('test_session_uppgift.json')
+    assert len(ruleset.rules) == 1
+
+    kattis = aaps.KattisResult()
+    kattis.add_AC('testproblem1', '01-01-2017 07:00')
+    kattis.add_AC('testproblem2', '01-01-2017 07:01')
+    kattis.add_AC('testproblem3', '01-01-2017 07:02')
+
+    result = resolve_for_result(kattis, ruleset)
+
+    assert len(result.goals) == 1
+    assert result.goals[0].points == 9
