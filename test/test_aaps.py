@@ -70,7 +70,7 @@ def test_uppgift():
 
 
 def test_session():
-    ruleset = get_ruleset_from_file('test_session_uppgift.json')
+    ruleset = get_ruleset_from_file('test_session.json')
     assert len(ruleset.rules) == 1
 
     kattis = aaps.KattisResult()

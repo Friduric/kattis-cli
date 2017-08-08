@@ -77,6 +77,24 @@ def make_uppgift_handler(kattis):
     return checker, resolver
 
 
+def make_session_handler(kattis):
+    def count_for_single_problem(problem, deadline):
+        solutions = kattis.solutions_for(problem)
+        problem_solved = len(solutions) > 0
+        return 3 * problem_solved
+
+    def checker(context, tree):
+        return isinstance(tree, dict) and 'session' in tree
+
+    def resolver(context, tree):
+        deadline = tree['session']['end']
+        problems = tree['session']['problems']
+        points = lambda problem: count_for_single_problem(problem, deadline)
+        return sum(map(points, problems))
+
+    return checker, resolver
+
+
 class KattisResult:
 
     def __init__(self):
@@ -96,5 +114,6 @@ class KattisResult:
         return [
             make_solved_handler(self),
             make_late_handler(self),
-            make_uppgift_handler(self)
+            make_uppgift_handler(self),
+            make_session_handler(self)
         ]
