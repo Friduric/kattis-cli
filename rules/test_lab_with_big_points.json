@@ -1,0 +1,23 @@
+{
+  "rules": [
+    {
+      "needs": true,
+      "towards": "lab-test-big",
+      "points": {
+        "uppgift": {
+          "problems": [
+            "labproblem-normal",
+            {
+              "name": "labproblem-medium",
+              "points": 2
+            },
+            {
+              "name": "labproblem-big",
+              "points": 42
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

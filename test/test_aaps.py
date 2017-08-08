@@ -96,3 +96,18 @@ def test_lab():
 
     assert len(result.goals) == 1
     assert result.goals[0].points == 2
+
+
+def test_lab_with_big_points():
+    ruleset = get_ruleset_from_file('test_lab_with_big_points.json')
+    assert len(ruleset.rules) == 1
+
+    kattis = aaps.KattisResult()
+    kattis.add_AC('labproblem-normal', '01-01-2017 08:00')
+    kattis.add_AC('labproblem-medium', '01-01-2017 08:00')
+    kattis.add_AC('labproblem-big', '01-01-2017 08:00')
+
+    result = resolve_for_result(kattis, ruleset)
+
+    assert len(result.goals) == 1
+    assert result.goals[0].points == 1 + 2 + 42
