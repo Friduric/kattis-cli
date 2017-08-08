@@ -27,7 +27,7 @@ def ruleset_add_rule(ruleset, rule):
 Rule = collections.namedtuple('Rule', 'needs towards points deadline name late')
 
 
-def make_rule(needs, towards, points, deadline='', name='', late=''):
+def make_rule(needs, towards, points, deadline, name, late):
     return Rule(needs, towards, points, deadline, name, late)
 
 
@@ -35,14 +35,14 @@ def make_rule_from_json(json):
     def crash_get(key):
         return json[key]
 
-    def get_or_default(key, default=''):
+    def get_or_default(key, default):
         return json.get(key, default)
 
-    mandatory = ['needs', 'towards', 'points']
-    nonmandatory = ['deadline', 'name', 'late']
+    mandatory = ['towards']
+    nonmandatory = [('deadline', ''), ('name', ''), ('late', ''), ('needs', True), ('points', 1)]
 
-    needs, towards, points = map(crash_get, mandatory)
-    deadline, name, late = map(get_or_default, nonmandatory)
+    towards = crash_get(mandatory[0])
+    deadline, name, late, needs, points = util.starmap_now(get_or_default, nonmandatory)
     return make_rule(needs, towards, points, deadline, name, late)
 
 
