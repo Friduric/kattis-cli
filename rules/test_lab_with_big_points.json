@@ -8,11 +8,11 @@
           "problems": [
             "labproblem-normal",
             {
-              "name": "labproblem-medium",
+              "id": "labproblem-medium",
               "points": 2
             },
             {
-              "name": "labproblem-big",
+              "id": "labproblem-big",
               "points": 42
             }
           ]

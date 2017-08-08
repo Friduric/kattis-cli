@@ -59,11 +59,26 @@ def make_late_handler(kattis):
 
 
 def make_uppgift_handler(kattis):
+    Problem = collections.namedtuple('Problem', 'id points')
+
+    def is_string(e):
+        return isinstance(e, str)
+    def is_dict(e):
+        return isinstance(e, dict)
+    def problem_from_string(problem_id):
+        return Problem(problem_id, 1)
+    def problem_from_dict(obj):
+        return Problem(obj['id'], obj['points'])
+    make_problem = util.cond([
+        (is_string, problem_from_string),
+        (is_dict, problem_from_dict)
+    ])
+
     def count_for_single_problem(problem, deadline):
-        solutions = kattis.solutions_for(problem)
+        solutions = kattis.solutions_for(problem.id)
         problem_solved = len(solutions) > 0
         before_deadline = problem_solved and any(time_compare(s.time, deadline) for s in solutions)
-        return 0.5 * problem_solved + 0.5 * before_deadline
+        return (0.5 * problem_solved + 0.5 * before_deadline) * problem.points
 
     def checker(context, tree):
         return isinstance(tree, dict) and 'uppgift' in tree
@@ -71,7 +86,7 @@ def make_uppgift_handler(kattis):
     def resolver(context, tree):
         # If a problem does not have a deadline, then assume it is a lab
         # and move the deadline to something like 100 years from now.
-        problems = tree['uppgift']['problems']
+        problems = util.map_now(make_problem, tree['uppgift']['problems'])
         deadline = tree['uppgift'].get('deadline', '01-01-2117 08:00')
         points = lambda problem: count_for_single_problem(problem, deadline)
         return sum(map(points, problems))
