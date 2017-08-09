@@ -225,6 +225,7 @@
     },
 
     {
+      "name": "Number of Hard Exercises Solved",
       "towards": "UPG1-hard",
       "points": {
         "uppgift": {
@@ -250,6 +251,7 @@
 
 
     {
+      "name": "Total UPG1 Points",
       "towards": "UPG1-points",
       "points": {
         "+": [
