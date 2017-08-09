@@ -213,22 +213,24 @@
     {
       "towards": "UPG1-hard",
       "points": {
-        "problems": [
-          "aspenavenue",
-          "caching",
-          "deadfraction",
-          "funnygames",
-          "equivalences",
-          "councilling",
-          "risk",
-          "towers",
-          "intellectualproperty",
-          "lifeforms",
-          "maxloot",
-          "rasterized",
-          "barktree",
-          "organising"
-        ]
+        "uppgift": {
+          "problems": [
+            "aspenavenue",
+            "caching",
+            "deadfraction",
+            "funnygames",
+            "equivalences",
+            "councilling",
+            "risk",
+            "towers",
+            "intellectualproperty",
+            "lifeforms",
+            "maxloot",
+            "rasterized",
+            "barktree",
+            "organising"
+          ]
+        }
       }
     },
 
@@ -238,7 +240,7 @@
           "lhs": { "get" : "UPG1-week1" },
           "rhs": 0
         }
-      }
+      },
       "towards": "week1-solved",
       "points": 1
     },
@@ -248,7 +250,7 @@
           "lhs": { "get" : "UPG1-week2" },
           "rhs": 0
         }
-      }
+      },
       "towards": "week2-solved",
       "points": 1
     },
@@ -258,7 +260,7 @@
           "lhs": { "get" : "UPG1-week3" },
           "rhs": 0
         }
-      }
+      },
       "towards": "week3-solved",
       "points": 1
     },
@@ -268,7 +270,7 @@
           "lhs": { "get" : "UPG1-week4" },
           "rhs": 0
         }
-      }
+      },
       "towards": "week4-solved",
       "points": 1
     },
@@ -278,7 +280,7 @@
           "lhs": { "get" : "UPG1-week5" },
           "rhs": 0
         }
-      }
+      },
       "towards": "week5-solved",
       "points": 1
     },
@@ -288,7 +290,7 @@
           "lhs": { "get" : "UPG1-week6" },
           "rhs": 0
         }
-      }
+      },
       "towards": "week6-solved",
       "points": 1
     },
@@ -298,7 +300,7 @@
           "lhs": { "get" : "UPG1-week7" },
           "rhs": 0
         }
-      }
+      },
       "towards": "week7-solved",
       "points": 1
     },
@@ -308,7 +310,7 @@
           "lhs": { "get" : "UPG1-week8" },
           "rhs": 0
         }
-      }
+      },
       "towards": "week8-solved",
       "points": 1
     },
@@ -318,7 +320,7 @@
           "lhs": { "get" : "UPG1-week9" },
           "rhs": 0
         }
-      }
+      },
       "towards": "week9-solved",
       "points": 1
     },
@@ -328,7 +330,7 @@
           "lhs": { "get" : "UPG1-week10" },
           "rhs": 0
         }
-      }
+      },
       "towards": "week10-solved",
       "points": 1
     },
@@ -338,7 +340,7 @@
           "lhs": { "get" : "UPG1-week11" },
           "rhs": 0
         }
-      }
+      },
       "towards": "week11-solved",
       "points": 1
     },
@@ -348,7 +350,7 @@
           "lhs": { "get" : "UPG1-week12" },
           "rhs": 0
         }
-      }
+      },
       "towards": "week12-solved",
       "points": 1
     },
@@ -358,7 +360,7 @@
           "lhs": { "get" : "UPG1-week13" },
           "rhs": 0
         }
-      }
+      },
       "towards": "week13-solved",
       "points": 1
     },
@@ -368,10 +370,10 @@
           "lhs": { "get" : "UPG1-week14" },
           "rhs": 0
         }
-      }
+      },
       "towards": "week14-solved",
       "points": 1
-    },
+    }
 
   ]
 }

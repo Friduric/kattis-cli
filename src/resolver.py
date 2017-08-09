@@ -125,7 +125,8 @@ def add_builtin_functions(context):
     ]
     numeric_iterable_functions = [
         ('MAX', max),
-        ('MIN', min)
+        ('MIN', min),
+        ('COUNT', lambda *args: sum(map(bool, args)))
     ]
     bool_iterable_functions = [
         ('AND', all),
@@ -217,6 +218,7 @@ def result_get_goal_points(result, goal_id):
     on_fail = lambda: 0
     on_success = lambda: goal.points
     return util.crossroad(lambda: goal, on_success, on_fail)
+
 
 ##########################################
 # Goal                                   #
@@ -329,9 +331,9 @@ def topological_order(rules):
         queue.append(index)
     def process_item(index):
         connection_count[index] -= 1
-        predicate = lambda: should_add_to_queue(index)
-        success = lambda: add_to_queue(index)
-        util.crossroad(predicate, success, util.noop)
+        util.cond([
+            (should_add_to_queue, add_to_queue)
+        ])(index)
     queue = list(filter(should_add_to_queue, range(len(rules))))
 
     idx = 0
@@ -358,7 +360,12 @@ def resolve(ruleset, context):
     def on_rule_fail(rule):
         result_update_failed_goal(result, rule)
     def on_rule_success(rule):
-        points = context.value_expression(rule.points)
+        points = 0
+        try:
+            points = context.value_expression(rule.points)
+        except TypeError as e:
+            print('Got a TypeError saying "{}"'.format(e))
+            print('while trying to resolve points for: \n\n{}\n'.format(rule))
         result_update_resolved_goal(result, rule, points)
 
     def process_rule(rule):

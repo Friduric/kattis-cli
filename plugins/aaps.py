@@ -119,6 +119,9 @@ class KattisResult:
     def __init__(self):
         self.AC = []
         self.WA = []
+        self.TLE = []
+        self.MLE = []
+        self.RTE = []
 
     def add_AC(self, id, time):
         self.AC.append(make_submission(id, time, 'AC'))
@@ -126,8 +129,36 @@ class KattisResult:
     def add_WA(self, id, time):
         self.WA.append(make_submission(id, time, 'WA'))
 
+    def add_TLE(self, id, time):
+        self.TLE.append(make_submission(id, time, 'TLE'))
+
+    def add_MLE(self, id, time):
+        self.MLE.append(make_submission(id, time, 'MLE'))
+
+    def add_RTE(self, id, time):
+        self.RTE.append(make_submission(id, time, 'RTE'))
+
+    def add_submission(self, submission):
+        array_choser = {
+            'AC': self.AC,
+            'WA': self.WA,
+            'TLE': self.TLE,
+            'MLE': self.MLE,
+            'RTE': self.RTE
+        }
+        # Discard compile errors and judgements not listed
+        array = array_choser.get(submission.result, [])
+        array.append(submission)
+
     def solutions_for(self, problem_id):
         return util.filter_now(lambda s: s.id == problem_id, self.AC)
+
+    def attempts_for(self, problem_id):
+        same_id = lambda sub: sub.id == problem_id
+        return util.filter_now(same_id, self.WA) + \
+            util.filter_now(same_id, self.TLE) + \
+            util.filter_now(same_id, self.MLE) + \
+            util.filter_now(same_id, self.RTE)
 
     def get_plugins(self):
         return [
@@ -136,7 +167,6 @@ class KattisResult:
             make_uppgift_handler(self),
             make_session_handler(self)
         ]
-
 
 
 Student = collections.namedtuple('Student', 'username name email submissions')
@@ -154,7 +184,7 @@ ExportedKattis = collections.namedtuple('ExportedKattisData', 'students')
 
 
 def make_exported_kattis():
-    return ExportedKattisData([])
+    return ExportedKattis([])
 
 
 def exported_kattis_add_student(data, student):
@@ -169,8 +199,20 @@ def read_exported_kattis_file(fpath):
     def json_to_submission(submission):
         problem_id = submission['problem']
         judgement = submission['judgement']
-        time = submission['time']
-        return make_submission(problem_id, time, judgement)
+        subtime = submission['time']
+        judgement_translation_map = {
+            'Wrong Answer': 'WA',
+            'Time Limit Exceeded': 'TLE',
+            'Accepted': 'AC',
+            'Run Time Error': 'RTE',
+            'Memory Limit Exceeded': 'MLE',
+        }
+        inputtimeformat = '%Y-%m-%d %H:%M:%S'
+        time_struct = time.strptime(subtime, inputtimeformat)
+        year, month, day, hour, minute = time_struct[:5]
+        output_time = '{}-{}-{} {}:{}'.format(day, month, year, hour, minute)
+        result = judgement_translation_map.get(judgement, '')
+        return make_submission(problem_id, output_time, result)
 
     def json_to_student(root):
         username = root.get('username', '[No Username]')

@@ -15,82 +15,9 @@
   "includes": [
     "rules/aaps_UPG1_2017.json",
     "rules/aaps_LAB1_labs.json"
-  ]
+  ],
 
   "rules": [
-
-    {
-      "points": {
-        "*": {
-          "lhs": 3,
-          "rhs": {
-            "session": "AAPS17 session 02"
-          }
-        }
-      },
-      "needs": true,
-      "towards": "individual-session-1"
-    },
-    {
-      "points": {
-        "*": {
-          "lhs": 3,
-          "rhs": {
-            "session": "AAPS17 session 03"
-          }
-        }
-      },
-      "needs": true,
-      "towards": "individual-session-2"
-    },
-    {
-      "points": {
-        "*": {
-          "lhs": 3,
-          "rhs": {
-            "session": "AAPS17 session 04"
-          }
-        }
-      },
-      "needs": true,
-      "towards": "group-session-1"
-    },
-    {
-      "points": {
-        "*": {
-          "lhs": 3,
-          "rhs": {
-            "session": "AAPS17 session 05"
-          }
-        }
-      },
-      "needs": true,
-      "towards": "individual-session-3"
-    },
-    {
-      "points": {
-        "*": {
-          "lhs": 3,
-          "rhs": {
-            "session": "AAPS17 session 06"
-          }
-        }
-      },
-      "needs": true,
-      "towards": "individual-session-4"
-    },
-    {
-      "points": {
-        "*": {
-          "lhs": 3,
-          "rhs": {
-            "session": "AAPS17 session 07"
-          }
-        }
-      },
-      "needs": true,
-      "towards": "group-session-2"
-    },
 
     {
       "towards": "individual-session-two-completed",
@@ -159,41 +86,34 @@
     {
       "points": {
         "MAX": [
-          {"+": {"lhs": {"get": "individual-session-1"}, "rhs": {"get": "individual-session-2"}}},
-          {"+": {"lhs": {"get": "individual-session-1"}, "rhs": {"get": "individual-session-3"}}},
-          {"+": {"lhs": {"get": "individual-session-1"}, "rhs": {"get": "individual-session-4"}}},
-          {"+": {"lhs": {"get": "individual-session-2"}, "rhs": {"get": "individual-session-3"}}},
-          {"+": {"lhs": {"get": "individual-session-2"}, "rhs": {"get": "individual-session-4"}}},
-          {"+": {"lhs": {"get": "individual-session-3"}, "rhs": {"get": "individual-session-4"}}}
+          {"+": [{"get": "individual-session-1"}, {"get": "individual-session-2"}]},
+          {"+": [{"get": "individual-session-1"}, {"get": "individual-session-3"}]},
+          {"+": [{"get": "individual-session-1"}, {"get": "individual-session-4"}]},
+          {"+": [{"get": "individual-session-2"}, {"get": "individual-session-3"}]},
+          {"+": [{"get": "individual-session-2"}, {"get": "individual-session-4"}]},
+          {"+": [{"get": "individual-session-3"}, {"get": "individual-session-4"}]}
         ]
       },
       "towards": "individual-session-score"
     },
 
     {
-      "points": [
-        {
-          "MAX": [
-            {"get": "group-session-1"},
-            {"get": "group-session-2"}
-          ]
-        }
-      ],
+      "points": {
+        "MAX": [
+          {"get": "group-session-1"},
+          {"get": "group-session-2"}
+        ]
+      },
       "towards": "group-session-score"
     },
 
     {
-      "points":
-      {
-        "+": {
-          "lhs": {
-            "+": {
-              "lhs": {"get": "individual-session-score"},
-              "rhs": {"get": "group-session-score"}
-            }
-          },
-          "rhs": {"get": "LAB1-points"}
-        }
+      "points": {
+        "+": [
+          {"get": "individual-session-score"},
+          {"get": "group-session-score"},
+          {"get": "LAB1-points"}
+        ]
       },
       "towards": "LAB1-total-points"
     },
