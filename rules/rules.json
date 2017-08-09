@@ -2,12 +2,12 @@
   "areas": [
     {
       "UPG1": {
-        "comment": "Problems that give you points towards UPG1. These are almost all worth 1 point and they have a special rule that they are halved if they are completed after the deadline. What you should also know is that you need to solve at least one exercise each week. Make sure to keep it up!"
+        "comment": "Problems that give you points towards UPG1. These are all worth 1 point and they have a special rule that they are halved if they are completed after the deadline. What you should also know is that you need to solve at least one problem from each week. Make sure to keep it up!"
       }
     },
     {
       "LAB1": {
-        "comment": "Lab assignments (Lab 1-4) and Sessions. Each problem from a session gives 3 points each, but only the 2 best individual and 1 best group give points. If your best sessions have 5 solved, then you have 45 points!"
+        "comment": "Lab assignments (Lab 1-4) and Sessions. Each problem from a session gives 3 points each, but only the 2 best individual and the best group give points. If all your best sessions have 5 solved, then you have 45 points towards LAB1!"
       }
     }
   ],
@@ -21,6 +21,10 @@
   "rules": [
 
     {
+      "comment": "You need to solve at least one problem in two separate individual sessions",
+      "comment2": "Note that the course often has a test session for everyone to get a grip of",
+      "comment3": "how Kattis works. This test session is generally NOT counted. Do not rely",
+      "comment4": "on it to get a good grade as it does not count!",
       "towards": "individual-session-two-completed",
       "points": 1,
       "needs": {
@@ -59,6 +63,8 @@
     },
 
     {
+      "comment": "Similar to individual sessions, you need to solve at least 1 problem",
+      "comment2": "in one group session",
       "points": 1,
       "towards": "group-session-one-completed",
       "needs": {
@@ -95,7 +101,8 @@
           {"+": [{"get": "individual-session-3"}, {"get": "individual-session-4"}]}
         ]
       },
-      "towards": "individual-session-score"
+      "towards": "individual-session-score",
+      "comment": "Your total individual session score is the sum of your two best scores"
     },
 
     {
@@ -105,7 +112,8 @@
           {"get": "group-session-2"}
         ]
       },
-      "towards": "group-session-score"
+      "towards": "group-session-score",
+      "comment": "similar to the above, your best group score is your total group score"
     },
 
     {
@@ -116,7 +124,11 @@
           {"get": "LAB1-points"}
         ]
       },
-      "towards": "LAB1-total-points"
+      "towards": "LAB1-total-points",
+      "comment": "The total number of points you get on the LAB1 moment is",
+      "comment2": "your total session score + points for the Labs.",
+      "comment3": "Please note that a lab problem is worth 1 point",
+      "comment4": "while a problem on a session is worth 3"
     },
 
     {
@@ -173,7 +185,10 @@
           {">": {"lhs": {"get": "week14-solved"}, "rhs": 0}}
         ]
       },
-      "towards": "one-each-week"
+      "towards": "one-each-week",
+      "comment": "You need to solve at least one problem each week in order to pass UPG1",
+      "comment2": "Note however that you can solve problems after their deadline",
+      "comment3": "but because there are so many, make sure to keep up the solving!"
     },
 
     {
@@ -224,7 +239,8 @@
           }
         ]
       },
-      "towards": "UPG1"
+      "towards": "UPG1",
+      "comment": "In order to get a 5 in UPG1 you need to solve at least half of the hard problems"
     }
   ]
 }
