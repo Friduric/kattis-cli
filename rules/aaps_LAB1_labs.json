@@ -1,6 +1,7 @@
 {
   "rules": [
     {
+      "name": "Solved for Lab 1",
       "towards": "LAB1-lab1",
       "points": {
         "uppgift": {
@@ -19,6 +20,7 @@
     },
 
     {
+      "name": "Solved for Lab 2",
       "towards": "LAB1-lab2",
       "points": {
         "uppgift": {
@@ -37,6 +39,7 @@
     },
 
     {
+      "name": "Solved for Lab 3",
       "towards": "LAB1-lab3",
       "points": {
         "uppgift": {
@@ -58,6 +61,7 @@
     },
 
     {
+      "name": "Solved for Lab 4",
       "towards": "LAB1-lab4",
       "points": {
         "uppgift": {
@@ -77,6 +81,7 @@
     },
 
     {
+      "name": "Total laboration points",
       "towards": "LAB1-points",
       "points": {
         "+": [

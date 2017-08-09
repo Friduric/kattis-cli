@@ -1,6 +1,7 @@
 {
   "rules": [
     {
+      "name": "Exercise 1",
       "towards": "UPG1-week1",
       "points": {
         "uppgift": {
@@ -16,6 +17,7 @@
     },
 
     {
+      "name": "Exercise 2",
       "towards": "UPG1-week2",
       "points": {
         "uppgift": {
@@ -31,6 +33,7 @@
     },
 
     {
+      "name": "Exercise 3",
       "towards": "UPG1-week3",
       "points": {
         "uppgift": {
@@ -46,6 +49,7 @@
     },
 
     {
+      "name": "Exercise 4",
       "towards": "UPG1-week4",
       "points": {
         "uppgift": {
@@ -61,6 +65,7 @@
     },
 
     {
+      "name": "Exercise 5",
       "towards": "UPG1-week5",
       "points": {
         "uppgift": {
@@ -76,6 +81,7 @@
     },
 
     {
+      "name": "Exercise 6",
       "towards": "UPG1-week6",
       "points": {
         "uppgift": {
@@ -91,6 +97,7 @@
     },
 
     {
+      "name": "Exercise 7",
       "towards": "UPG1-week7",
       "points": {
         "uppgift": {
@@ -106,6 +113,7 @@
     },
 
     {
+      "name": "Exercise 8",
       "towards": "UPG1-week8",
       "points": {
         "uppgift": {
@@ -121,6 +129,7 @@
     },
 
     {
+      "name": "Exercise 9",
       "towards": "UPG1-week9",
       "points": {
         "uppgift": {
@@ -136,6 +145,7 @@
     },
 
     {
+      "name": "Exercise 10",
       "towards": "UPG1-week10",
       "points": {
         "uppgift": {
@@ -151,6 +161,7 @@
     },
 
     {
+      "name": "Exercise 11",
       "towards": "UPG1-week11",
       "points": {
         "uppgift": {
@@ -166,6 +177,7 @@
     },
 
     {
+      "name": "Exercise 12",
       "towards": "UPG1-week12",
       "points": {
         "uppgift": {
@@ -181,6 +193,7 @@
     },
 
     {
+      "name": "Exercise 13",
       "towards": "UPG1-week13",
       "points": {
         "uppgift": {
@@ -196,6 +209,7 @@
     },
 
     {
+      "name": "Exercise 14",
       "towards": "UPG1-week14",
       "points": {
         "uppgift": {

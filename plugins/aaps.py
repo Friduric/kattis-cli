@@ -153,12 +153,18 @@ class KattisResult:
     def solutions_for(self, problem_id):
         return util.filter_now(lambda s: s.id == problem_id, self.AC)
 
-    def attempts_for(self, problem_id):
+    def WA_for(self, problem_id):
+        return util.filter_now(lambda s: s.id == problem_id, self.WA)
+
+    def fails_for(self, problem_id):
         same_id = lambda sub: sub.id == problem_id
         return util.filter_now(same_id, self.WA) + \
             util.filter_now(same_id, self.TLE) + \
             util.filter_now(same_id, self.MLE) + \
             util.filter_now(same_id, self.RTE)
+
+    def attempts_for(self, problem_id):
+        return self.solutions_for(problem_id) + self.fails_for(problem_id)
 
     def get_plugins(self):
         return [
@@ -168,6 +174,9 @@ class KattisResult:
             make_session_handler(self)
         ]
 
+    def solved_before(self, problem, deadline):
+        solutions = self.solutions_for(problem)
+        return any(time_compare(sol.time, deadline) for sol in solutions)
 
 Student = collections.namedtuple('Student', 'username name email submissions')
 

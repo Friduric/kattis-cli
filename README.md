@@ -1,70 +1,51 @@
 # Kattis CLI for TDDD95
 
-This is an updated version of
-[kattis-cli](https://github.com/Kattis/kattis-cli) that uses
-[beautiful soup](https://www.crummy.com/software/BeautifulSoup/) to
-allow for listing accepted submissions. The tool will list all
-problems that have been accepted and will do so in earliest first
-fashion. Meaning you can look at the first accepted submission to a
-problem and compare this against the deadline.
+This program is designed to help teachers and students of TDDD95 with
+grading. It is designed to help teachers get a good overview of how
+students are performing but also help students see how well they are
+performing, allowing them to easier attain their desired grade, as
+well as giving them an overview of how they are doing.
 
-The repo also has a calculate_points script that downloads the
-accepted data and compares it with the rules in 'rules.json'. It
-counts the points you have for UPG1 and LAB1 respectively but it
-doesn't include sessions. Running it will give you a summary of how
-many points you have towards UPG1 and LAB1, minus the points you
-(should) have from sessions.
+The program mainly uses custom software to create rules for judging
+student results, but it also uses the
+[kattis-cli](https://github.com/Kattis/kattis-cli) for accessing
+priviledged information (such as detailed submission
+results). Kattis-cli is used to download the information as an HTML
+page and then it is parsed using
+[beautiful soup](https://www.crummy.com/software/BeautifulSoup/). The
+data is then saved to an output file and can later be parsed by the
+program
 
 Also to be clear: I am not affiliated with Kattis in any way. I am a
 student at Linköping University that is employed as an assistant in
 the course TDDD95 and have decided to extend the kattis-cli, primarily
-for use by TDDD95 students (but everyone else is welcome to!).
+for use by TDDD95 students and teachers (but everyone else is welcome to!).
 
 # Configuration file
 
-Before running the submission client, you need to
-[download a configuration file](https://liu.kattis.com/download/kattisrc). This
-file includes a secret personal token that allows you to log in. It
-should be placed in your home directory, or in the same directory as
-`submit.py`, and be called `.kattisrc`.
+Before running the downloader you will need a configuration file from
+kattis. You can download yours
+[here](https://liu.kattis.com/download/kattisrc) on how to download
+this. The configuration file includes a secret personal token so make
+sure to keep the file secret! Store it in your home directory as
+`.kattisrc`
 
 # Installing dependencies
 
-The program uses `requests` to do http requests and `beautifulsoup4`
-with `lxml` to parse html. In order to install these either run `pip
-install requests beautifulsoup4 lxml` or `pip install -r
-requirements.txt`
+The program uses a lot of different python libraries, these are
+installed through pip by running
 
-# Running the client
+`pip install -r requirements.txt`
 
-The easiest way to use the client is if you have named your source
-code to *problemid*.suffix, where suffix is something suitable for the
-language (e.g., `.java` for Java, `.c` for C, `.cc` or `.cpp` for C++,
-`.py` for Python, `.cs` for C#, `.go` for Go, and so on...).
+It would be wise to create a virtualenv for this tough, you can look
+[here](http://python-guide-pt-br.readthedocs.io/en/latest/dev/virtualenvs/)
+to find out more about virtualenv
 
-Let's assume you're solving the problem
-[Hello World!](https://open.kattis.com/problems/hello) (with problem
-id `hello`) and that your java solution is in the file
-`Hello.java`. Then you can simply run `submit.py Hello.java`, and the
-client will make the correct guesses. You will always be prompted
-before a submission is sent.
+# Running
 
-If you want to list your accepted submissions then run `python submit.py
---submissions`.
-
-# More advanced options
-
-The submit client can handle multiple files in a submission. For such
-submissions, the filename and suffix of the first file listed on the
-command line is the basis of the guesses. It is ok to list a file
-multiple times, e.g., `submit.py Hello.java *.java` will work as
-intended.
-
-In case the client guesses wrong, you can correct it by specifying a
-command line option. Running `submit.py -h` will list all options. The
-options are:
-
-* `-p <problem_id>`: overrides problem guess
-* `-m <mainclass>`: overrides mainclass guess
-* `-l <language>`: overrides language guess
-* `-f`: forces submission (i.e., no prompt)
+The program comes with some sample scripts that you can run that will
+download your information, run the rules against your information or
+if you are a teacher there is a script that will allow you to run the
+rules against exported course data. All of these are located in the
+`scripts` folder. Run them by positioning yourself in the root and
+then run `./scripts/the_script_to_run.sh`

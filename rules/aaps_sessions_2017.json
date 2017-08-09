@@ -1,6 +1,7 @@
 {
   "rules": [
     {
+      "name": "Individual Session 1",
       "towards": "individual-session-1",
       "points": {
         "session": {
@@ -18,6 +19,7 @@
     },
 
     {
+      "name": "Individual Session 2",
       "towards": "individual-session-2",
       "points": {
         "session": {
@@ -35,6 +37,7 @@
     },
 
     {
+      "name": "Individual Session 3",
       "towards": "individual-session-3",
       "points": {
         "session": {
@@ -52,6 +55,7 @@
     },
 
     {
+      "name": "Individual Session 4",
       "towards": "individual-session-4",
       "points": {
         "session": {
@@ -71,6 +75,7 @@
 
 
     {
+      "name": "Group Session 1",
       "towards": "group-session-1",
       "points": {
         "session": {
@@ -88,6 +93,7 @@
     },
 
     {
+      "name": "Group Session 2",
       "towards": "group-session-2",
       "points": {
         "session": {

@@ -59,7 +59,8 @@
             ]
           }
         }
-      }
+      },
+      "name": "At Least 2 Individual Sessions Completed"
     },
 
     {
@@ -67,6 +68,7 @@
       "comment2": "in one group session",
       "points": 1,
       "towards": "group-session-one-completed",
+      "name": "At Least 1 Group Session Completed",
       "needs": {
         ">=": {
           "rhs": 1,
@@ -102,6 +104,7 @@
         ]
       },
       "towards": "individual-session-score",
+      "name": "Total Individual Session Score",
       "comment": "Your total individual session score is the sum of your two best scores"
     },
 
@@ -113,6 +116,7 @@
         ]
       },
       "towards": "group-session-score",
+      "name": "Total Group Session Score",
       "comment": "similar to the above, your best group score is your total group score"
     },
 
@@ -125,6 +129,7 @@
         ]
       },
       "towards": "LAB1-total-points",
+      "name": "LAB1 Total Points",
       "comment": "The total number of points you get on the LAB1 moment is",
       "comment2": "your total session score + points for the Labs.",
       "comment3": "Please note that a lab problem is worth 1 point",
@@ -140,6 +145,7 @@
           {">": {"lhs": {"get": "group-session-one-completed"}, "rhs": 0}}
         ]
       },
+      "name": "LAB1 - Has 3?",
       "towards": "LAB1"
     },
     {
@@ -151,6 +157,7 @@
           {">": {"lhs": {"get": "group-session-one-completed"}, "rhs": 0}}
         ]
       },
+      "name": "LAB1 - Has 4?",
       "towards": "LAB1"
     },
     {
@@ -162,6 +169,7 @@
           {">": {"lhs": {"get": "group-session-one-completed"}, "rhs": 0}}
         ]
       },
+      "name": "LAB1 - Has 5?",
       "towards": "LAB1"
     },
 
@@ -186,6 +194,7 @@
         ]
       },
       "towards": "one-each-week",
+      "name": "At Least 1 Exercise Each Week",
       "comment": "You need to solve at least one problem each week in order to pass UPG1",
       "comment2": "Note however that you can solve problems after their deadline",
       "comment3": "but because there are so many, make sure to keep up the solving!"
@@ -203,6 +212,7 @@
           }
         ]
       },
+      "name": "UPG1 - Has 3?",
       "towards": "UPG1"
     },
     {
@@ -213,6 +223,7 @@
           {">=": {"lhs": { "get": "UPG1-points" }, "rhs": 28}}
         ]
       },
+      "name": "UPG1 - Has 4?",
       "towards": "UPG1"
     },
     {
@@ -239,6 +250,7 @@
           }
         ]
       },
+      "name": "UPG1 - Has 5?",
       "towards": "UPG1",
       "comment": "In order to get a 5 in UPG1 you need to solve at least half of the hard problems"
     }
