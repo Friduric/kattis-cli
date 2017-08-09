@@ -67,18 +67,18 @@ def print_student_result(student_result):
     individual_goals = util.filter_now(is_individual, result.goals)
     group_goals = util.filter_now(is_group, result.goals)
 
-    print('Goals for {}'.format(as_red('UPG1')))
-    util.starmap_now(print_goal, enumerate(upg1_goals))
-    print()
-    print('Goals for {}'.format(as_red('LAB1')))
-    util.starmap_now(print_goal, enumerate(lab1_goals))
-    print()
-    print('Goals for {}'.format(as_red('Individual Sessions')))
-    util.starmap_now(print_goal, enumerate(individual_goals))
-    print()
-    print('Goals for {}'.format(as_red('Group Sessions')))
-    util.starmap_now(print_goal, enumerate(group_goals))
-    print()
+    def print_goals(name, goals):
+        print('Goals for {}'.format(as_red(name)))
+        util.starmap_now(print_goal, enumerate(goals))
+        print()
+
+    all_goals = [
+        ('Individual Sessions', individual_goals),
+        ('Group Sessions', group_goals),
+        ('UPG1', upg1_goals),
+        ('LAB1', lab1_goals)
+    ]
+    util.starmap_now(print_goals, all_goals)
 
     def get_id(goal):
         return goal.id
@@ -90,8 +90,7 @@ def print_student_result(student_result):
             goal.id not in map(get_id, group_goals)
 
     rest_goals = util.filter_now(is_rest, result.goals)
-    print('Goals for {}'.format(as_red('Internal')))
-    util.starmap_now(print_goal, enumerate(rest_goals))
+    #print_goals('Internal', rest_goals)
 
 def teacher_main():
     rulepath = 'rules/rules.json'
