@@ -1,0 +1,108 @@
+{
+  "rules": [
+    {
+      "towards": "individual-session-1",
+      "points": {
+        "session": {
+          "end": "09-02-2017 16:30",
+          "problems": [
+            "cantor",
+            "cetiri",
+            "equations",
+            "firefly",
+            "ladice",
+            "shopaholic"
+          ]
+        }
+      }
+    },
+
+    {
+      "towards": "individual-session-2",
+      "points": {
+        "session": {
+          "end": "02-03-2017 16:30",
+          "problems": [
+            "arcticnetwork",
+            "bond",
+            "escapeplan",
+            "mountainvillage",
+            "pickupsticks",
+            "taxicab"
+          ]
+        }
+      }
+    },
+
+    {
+      "towards": "individual-session-3",
+      "points": {
+        "session": {
+          "end": "24-04-2017 16:30",
+          "problems": [
+            "pascal",
+            "persistent",
+            "prva",
+            "radiotransmission",
+            "suffidromes",
+            "textureanalysis"
+          ]
+        }
+      }
+    },
+
+    {
+      "towards": "individual-session-4",
+      "points": {
+        "session": {
+          "end": "15-05-2017 16:30",
+          "problems": [
+            "jezzball",
+            "platforme",
+            "returnofthejedi",
+            "trojke",
+            "watchdog",
+            "znanstvenik"
+          ]
+        }
+      }
+    },
+
+
+
+    {
+      "towards": "group-session-1",
+      "points": {
+        "session": {
+          "end": "27-03-2017 16:30",
+          "problems": [
+            "bicikli",
+            "freckles",
+            "grass",
+            "megainversions",
+            "moogle",
+            "kitchen"
+          ]
+        }
+      }
+    },
+
+    {
+      "towards": "group-session-2",
+      "points": {
+        "session": {
+          "end": "22-05-2017 16:30",
+          "problems": [
+            "cardmagic",
+            "castingspells",
+            "declaration",
+            "forestconstruction",
+            "muzicari",
+            "sumsets"
+          ]
+        }
+      }
+    }
+
+  ]
+}

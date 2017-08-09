@@ -234,6 +234,29 @@
       }
     },
 
+
+    {
+      "towards": "UPG1-points",
+      "points": {
+        "+": [
+          {"get": "UPG1-week1"},
+          {"get": "UPG1-week2"},
+          {"get": "UPG1-week3"},
+          {"get": "UPG1-week4"},
+          {"get": "UPG1-week5"},
+          {"get": "UPG1-week6"},
+          {"get": "UPG1-week7"},
+          {"get": "UPG1-week8"},
+          {"get": "UPG1-week9"},
+          {"get": "UPG1-week10"},
+          {"get": "UPG1-week11"},
+          {"get": "UPG1-week12"},
+          {"get": "UPG1-week13"},
+          {"get": "UPG1-week14"}
+        ]
+      }
+    },
+
     {
       "needs": {
         ">": {

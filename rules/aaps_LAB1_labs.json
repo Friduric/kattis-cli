@@ -74,6 +74,18 @@
           ]
         }
       }
+    },
+
+    {
+      "towards": "LAB1-points",
+      "points": {
+        "+": [
+          { "get": "LAB1-lab1" },
+          { "get": "LAB1-lab2" },
+          { "get": "LAB1-lab3" },
+          { "get": "LAB1-lab4" }
+        ]
+      }
     }
   ]
 }

@@ -230,4 +230,43 @@ def read_exported_kattis_file(fpath):
     add_student = lambda student: exported_kattis_add_student(result, student)
     util.map_now(add_student, students)
 
+    def solve_time(starttime, solvetime):
+        solvetime_in_s = solvetime * 60
+        t = time.ctime(starttime + solvetime_in_s)
+        year, month, day, hour, minute = t[:5]
+        return '{}-{}-{} {}:{}'.format(day, month, year, hour, minute)
+
+    def add_session_problem(student, problem, starttime):
+        timestr = solve_time(starttime, problem['solve_time'])
+        problem_id = problem['problem_name']
+        submission = make_submission(problem_id, timestr, 'AC')
+        student_add_submission(student, submission)
+
+    def add_student_session_problems(starttime, student, problems):
+        is_student = lambda s: s.username == student
+        student_data = util.find(is_student, result.students)
+        student_not_exist = util.constant(not bool(student_data))
+        is_solved = lambda problem: 'solve_time' in problem
+        add_problem = lambda problem: add_session_problem(student_data, problem, starttime)
+        handle_single_problem = util.cond([
+            (student_not_exist, util.noop),
+            (is_solved, add_problem)
+        ])
+        util.map_now(handle_single_problem, problems)
+
+    def add_team_result(starttime, result):
+        members = result['members']
+        problems = result['problems']
+        add_for_student = lambda student: add_student_session_problems(starttime, student, problems)
+        util.map_now(add_for_student, members)
+
+    def add_session(session):
+        # starttime in seconds since epoch
+        starttime = int(session['starttime'])
+        results = session['results']
+        add_team = lambda result: add_team_result(starttime, result)
+        util.map_now(add_team, results)
+
+    util.map_now(add_session, content['sessions'])
+
     return result

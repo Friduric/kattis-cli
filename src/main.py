@@ -24,18 +24,74 @@ import rules
 import util
 
 import collections
+import colored
 
 
-StudentResult = collections.namedtuple('StudentResult', 'student kattis context result')
+def as_color(string, color):
+    return '{}{}{}'.format(colored.fg(color), string, colored.attr('reset'))
+
+as_red = lambda string: as_color(string, 'red')
+as_green = lambda string: as_color(string, 'green')
+as_pink = lambda string: as_color(string, 'hot_pink_3a')
+
+StudentResult = collections.namedtuple('StudentResult', 'student ruleset kattis context result')
 
 
-def make_student_result(student, kattis, context, result):
-    return StudentResult(student, kattis, context, result)
+def make_student_result(student, ruleset, kattis, context, result):
+    return StudentResult(student, ruleset, kattis, context, result)
 
 
 def print_student_result(student_result):
-    student, kattis, context, result = student_result
-    print('Information for: {}'.format(student.name))
+    student, ruleset, kattis, context, result = student_result
+    print()
+    print()
+    print(student.name)
+    print('-' * 42)
+    print()
+
+    def print_goal(idx, goal):
+        if idx % 4 == 0:
+            print()
+        name = '{:40}'.format(goal.name)
+        p = goal.points
+        if int(p) == goal.points:
+            p = int(p)
+        points = '{:3}'.format(as_green(p))
+        print(name, points)
+    is_upg1 = lambda goal: goal.name.startswith('UPG1')
+    is_lab1 = lambda goal: goal.name.startswith('LAB1')
+    is_individual = lambda goal: goal.name.startswith('individual-session')
+    is_group = lambda goal: goal.name.startswith('group-session')
+    upg1_goals = util.filter_now(is_upg1, result.goals)
+    lab1_goals = util.filter_now(is_lab1, result.goals)
+    individual_goals = util.filter_now(is_individual, result.goals)
+    group_goals = util.filter_now(is_group, result.goals)
+
+    print('Goals for {}'.format(as_red('UPG1')))
+    util.starmap_now(print_goal, enumerate(upg1_goals))
+    print()
+    print('Goals for {}'.format(as_red('LAB1')))
+    util.starmap_now(print_goal, enumerate(lab1_goals))
+    print()
+    print('Goals for {}'.format(as_red('Individual Sessions')))
+    util.starmap_now(print_goal, enumerate(individual_goals))
+    print()
+    print('Goals for {}'.format(as_red('Group Sessions')))
+    util.starmap_now(print_goal, enumerate(group_goals))
+    print()
+
+    def get_id(goal):
+        return goal.id
+
+    def is_rest(goal):
+        return goal.id not in map(get_id, upg1_goals) and \
+            goal.id not in map(get_id, lab1_goals) and \
+            goal.id not in map(get_id, individual_goals) and \
+            goal.id not in map(get_id, group_goals)
+
+    rest_goals = util.filter_now(is_rest, result.goals)
+    print('Goals for {}'.format(as_red('Internal')))
+    util.starmap_now(print_goal, enumerate(rest_goals))
 
 def teacher_main():
     rulepath = 'rules/rules.json'
@@ -52,7 +108,7 @@ def teacher_main():
         add_plugin = lambda c, r: resolver.context_add_plugin(context, c, r)
         util.starmap_now(add_plugin, plugins)
         result = resolver.resolve(ruleset, context)
-        return make_student_result(student, kattis, context, result)
+        return make_student_result(student, ruleset, kattis, context, result)
 
     student_results = util.map_now(handle_student, exported.students)
     util.map_now(print_student_result, student_results)

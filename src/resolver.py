@@ -115,8 +115,12 @@ def make_get_handler():
     return make_general_handler('get', util.list_unwrap, util.list_wrap, handle_expression)
 
 
+
 def add_builtin_functions(context):
     # Set up data for reducer functions
+    def count_operand(values):
+        return sum(map(bool, values))
+
     reducer_functions = [
         ('+', operator.add),
         ('-', operator.sub),
@@ -126,7 +130,7 @@ def add_builtin_functions(context):
     numeric_iterable_functions = [
         ('MAX', max),
         ('MIN', min),
-        ('COUNT', lambda *args: sum(map(bool, args)))
+        ('COUNT', count_operand)
     ]
     bool_iterable_functions = [
         ('AND', all),
