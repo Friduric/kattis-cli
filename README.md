@@ -30,22 +30,21 @@ this. The configuration file includes a secret personal token so make
 sure to keep the file secret! Store it in your home directory as
 `.kattisrc`
 
-# Installing dependencies
-
-The program uses a lot of different python libraries, these are
-installed through pip by running
-
-`pip install -r requirements.txt`
-
-It would be wise to create a virtualenv for this tough, you can look
-[here](http://python-guide-pt-br.readthedocs.io/en/latest/dev/virtualenvs/)
-to find out more about virtualenv
-
 # Running
 
-The program comes with some sample scripts that you can run that will
-download your information, run the rules against your information or
-if you are a teacher there is a script that will allow you to run the
-rules against exported course data. All of these are located in the
-`scripts` folder. Run them by positioning yourself in the root and
-then run `./scripts/the_script_to_run.sh`
+In general this program requires that you have python3 and virtualenv
+installed. If you have neither installed and you are on a ubuntu-like
+system then you can run `sudo apt-get install python3 && sudo pip
+install -H virtualenv`.
+
+### Teacher
+
+Start by running the setup script: `./scripts/setup.sh`. Then download
+course data from Kattis and put it inside `./data`. You can in theory
+download any data, but it is suggested that you download "all" instead
+of "First accepted" or any other.
+
+After this is done you can run `./scripts/teacher_main.sh` to see the
+results of the students. This script looks for
+`AAPS-AAPS17_export_all.json` inside the data directory, so if you get
+a FileNotFound exception then change the script to use the correct file
