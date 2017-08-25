@@ -49,9 +49,9 @@ def context_set_result(context, result):
     context.result = result
 
 
-def context_add_plugin(context, checker, handler):
+def context_add_plugin(context, checker, resolver):
     # Plugins have priority over built-in functions
-    context.function_handlers.appendleft((checker, handler))
+    context.function_handlers.appendleft((checker, resolver))
 
 ##########################################
 # Builtin functions for context          #
