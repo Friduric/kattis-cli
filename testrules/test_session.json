@@ -5,6 +5,7 @@
       "towards": "testsession",
       "points": {
         "session": {
+          "name": "Test Session",
           "end": "01-01-2017 12:00",
           "problems": [
             "testproblem1",
