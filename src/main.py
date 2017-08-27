@@ -172,12 +172,14 @@ def print_student_result(student_result, detailed):
     rest_goals = util.filter_now(is_rest, result.goals)
     #print_goals('Internal', rest_goals)
 
-def teacher_main(rulepath, datapath, detailed=False, name_filter=None):
+def main(rulepath, datapath, detailed=False, name_filter=None, is_student=False):
     ruleset = rules.parse_file(rulepath)
     exported = aaps.read_exported_kattis_file(datapath)
 
     def handle_student(student):
         kattis = aaps.KattisResult()
+        if is_student:
+            kattis.resolve_sessions_with_input()
         add_sub = lambda sub: kattis.add_submission(sub)
         util.map_now(add_sub, student.submissions)
         context = resolver.make_context()
@@ -204,11 +206,11 @@ if __name__ == '__main__':
     def add_flag(flag, help):
         parser.add_argument(flag, action='store_const', const=True, default=False, help=help)
 
-    add_flag('--teacher', 'For viewing all students results')
+    add_flag('--student', 'For viewing only your own results')
     add_flag('--detailed', 'For viewing detailed results')
     parser.add_argument('--data', help='Data to read from')
     parser.add_argument('--rules', help='Rules to use for judging')
     parser.add_argument('--filter', default='', help='Filter on name')
     args = parser.parse_args()
-    if args.teacher:
-        teacher_main(args.rules, args.data, detailed=args.detailed, name_filter=args.filter)
+    main(args.rules, args.data, detailed=args.detailed, name_filter=args.filter,
+         is_student=args.student)

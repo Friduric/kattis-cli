@@ -193,7 +193,7 @@
           {">": {"lhs": {"get": "week14-solved"}, "rhs": 0}}
         ]
       },
-      "towards": "one-each-week",
+      "towards": "UPG1-one-each-week",
       "name": "At Least 1 Exercise Each Week",
       "comment": "You need to solve at least one problem each week in order to pass UPG1",
       "comment2": "Note however that you can solve problems after their deadline",
@@ -204,7 +204,7 @@
       "points": 3,
       "needs": {
         "AND": [
-          {">": {"lhs": {"get": "one-each-week"}, "rhs": 0}},
+          {">": {"lhs": {"get": "UPG1-one-each-week"}, "rhs": 0}},
           {">=": {
              "lhs": { "get": "UPG1-points" },
              "rhs": 14
@@ -219,7 +219,7 @@
       "points": 1,
       "needs": {
         "AND": [
-          {">": {"lhs": { "get": "one-each-week"}, "rhs": 0 }},
+          {">": {"lhs": { "get": "UPG1-one-each-week"}, "rhs": 0 }},
           {">=": {"lhs": { "get": "UPG1-points" }, "rhs": 28}}
         ]
       },
@@ -232,7 +232,7 @@
         "AND": [
           {
             ">": {
-              "lhs": {"get": "one-each-week"},
+              "lhs": {"get": "UPG1-one-each-week"},
               "rhs": 0
             }
           },

@@ -5,6 +5,7 @@
       "towards": "individual-session-1",
       "points": {
         "session": {
+          "name": "Individual Session 1",
           "end": "09-02-2017 16:30",
           "problems": [
             "cantor",
@@ -23,6 +24,7 @@
       "towards": "individual-session-2",
       "points": {
         "session": {
+          "name": "Individual Session 2",
           "end": "02-03-2017 16:30",
           "problems": [
             "arcticnetwork",
@@ -41,6 +43,7 @@
       "towards": "individual-session-3",
       "points": {
         "session": {
+          "name": "Individual Session 3",
           "end": "24-04-2017 16:30",
           "problems": [
             "pascal",
@@ -59,6 +62,7 @@
       "towards": "individual-session-4",
       "points": {
         "session": {
+          "name": "Individual Session 4",
           "end": "15-05-2017 16:30",
           "problems": [
             "jezzball",
@@ -79,6 +83,7 @@
       "towards": "group-session-1",
       "points": {
         "session": {
+          "name": "Group Session 1",
           "end": "27-03-2017 16:30",
           "problems": [
             "bicikli",
@@ -97,6 +102,7 @@
       "towards": "group-session-2",
       "points": {
         "session": {
+          "name": "Group Session 2",
           "end": "22-05-2017 16:30",
           "problems": [
             "cardmagic",

@@ -2,6 +2,7 @@ import collections
 import util
 import time
 import json
+import colored
 
 
 Submission = collections.namedtuple('Submission', 'id time result')
@@ -97,18 +98,35 @@ def make_uppgift_handler(kattis):
 
 
 def make_session_handler(kattis):
-    def count_for_single_problem(problem, deadline):
+    def count_for_single_problem(name, problem, deadline):
         solutions = kattis.solutions_for(problem)
         problem_solved = len(solutions) > 0
         return 3 * problem_solved
+
+    def input_for_single_problem(name, problem, deadline):
+        red = colored.fg('red')
+        white = colored.fg('white')
+        reset = colored.attr('reset')
+        format_args = [red, problem, white, red, name, white]
+        message = 'Did you solve the problem {}{}{} during {}{}{} [y/n]: '.format(*format_args)
+        answer = input(message)
+        solved = answer.lower() in ['y', 'yes']
+        return 3 * solved
+
+    choice = {
+        True: input_for_single_problem,
+        False: count_for_single_problem
+    }
+    problem_handler = choice[kattis.count_session_with_input]
 
     def checker(context, tree):
         return isinstance(tree, dict) and 'session' in tree
 
     def resolver(context, tree):
+        name = tree['session']['name']
         deadline = tree['session']['end']
         problems = tree['session']['problems']
-        points = lambda problem: count_for_single_problem(problem, deadline)
+        points = lambda problem: problem_handler(name, problem, deadline)
         return sum(map(points, problems))
 
     return checker, resolver
@@ -122,6 +140,10 @@ class KattisResult:
         self.TLE = []
         self.MLE = []
         self.RTE = []
+        self.count_session_with_input = False
+
+    def resolve_sessions_with_input(self):
+        self.count_session_with_input = True
 
     def add_AC(self, id, time):
         self.AC.append(make_submission(id, time, 'AC'))
