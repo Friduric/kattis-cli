@@ -32,7 +32,8 @@
             "minspantree",
             "maxflow",
             "mincostmaxflow",
-            "eulerianpath"
+            "eulerianpath",
+            "mincut"
           ]
         }
       }

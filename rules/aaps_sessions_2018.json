@@ -7,14 +7,7 @@
         "session": {
           "name": "Individual Session 1",
           "end": "09-02-2017 16:30",
-          "problems": [
-            "cantor",
-            "cetiri",
-            "equations",
-            "firefly",
-            "ladice",
-            "shopaholic"
-          ]
+          "problems": []
         }
       }
     },
@@ -26,14 +19,7 @@
         "session": {
           "name": "Individual Session 2",
           "end": "02-03-2017 16:30",
-          "problems": [
-            "arcticnetwork",
-            "bond",
-            "escapeplan",
-            "mountainvillage",
-            "pickupsticks",
-            "taxicab"
-          ]
+          "problems": []
         }
       }
     },
@@ -45,14 +31,7 @@
         "session": {
           "name": "Individual Session 3",
           "end": "24-04-2017 16:30",
-          "problems": [
-            "pascal",
-            "persistent",
-            "prva",
-            "radiotransmission",
-            "suffidromes",
-            "textureanalysis"
-          ]
+          "problems": []
         }
       }
     },
@@ -64,14 +43,7 @@
         "session": {
           "name": "Individual Session 4",
           "end": "15-05-2017 16:30",
-          "problems": [
-            "jezzball",
-            "platforme",
-            "returnofthejedi",
-            "trojke",
-            "watchdog",
-            "znanstvenik"
-          ]
+          "problems": []
         }
       }
     },
@@ -85,14 +57,7 @@
         "session": {
           "name": "Group Session 1",
           "end": "27-03-2017 16:30",
-          "problems": [
-            "bicikli",
-            "freckles",
-            "grass",
-            "megainversions",
-            "moogle",
-            "kitchen"
-          ]
+          "problems": []
         }
       }
     },
@@ -104,13 +69,22 @@
         "session": {
           "name": "Group Session 2",
           "end": "22-05-2017 16:30",
+          "problems": []
+        }
+      }
+    },
+
+    {
+      "name": "Example Session",
+      "towards": "example-session",
+      "points": {
+        "session": {
+          "name": "Example Session",
+          "end": "22-05-2117 16:30",
           "problems": [
-            "cardmagic",
-            "castingspells",
-            "declaration",
-            "forestconstruction",
-            "muzicari",
-            "sumsets"
+            "hello",
+            "pointinpolygon",
+            "2naire"
           ]
         }
       }

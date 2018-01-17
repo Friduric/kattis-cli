@@ -13,9 +13,9 @@
   ],
 
   "includes": [
-    "rules/aaps_UPG1_2017.json",
+    "rules/aaps_UPG1_2018.json",
     "rules/aaps_LAB1_labs.json",
-    "rules/aaps_sessions_2017.json"
+    "rules/aaps_sessions_2018.json"
   ],
 
   "rules": [
