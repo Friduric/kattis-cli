@@ -227,10 +227,21 @@ def read_exported_kattis_file(fpath):
         content = json.load(fp)
     json_students = content['students']
 
+    def normalize_time(timestr):
+        # Time is given in two different ways. Eiter '%Y-%m-%d %H:%M:%S'
+        # or '%H:%M:%S' and in the latter it is supposed to be today.
+        items = timestr.split('-')
+        if len(items) <= 1:
+            # Add date in front, it is the date for today
+            today = time.localtime()
+            return '{}-{}-{} {}'.format(today.tm_year, today.tm_mon,
+                                        today.tm_mday, timestr)
+        return timestr
+
     def json_to_submission(submission):
         problem_id = submission['problem']
         judgement = submission['judgement']
-        subtime = submission['time']
+        subtime = normalize_time(submission['time'])
         judgement_translation_map = {
             'Wrong Answer': 'WA',
             'Time Limit Exceeded': 'TLE',
