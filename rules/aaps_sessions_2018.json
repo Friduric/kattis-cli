@@ -6,8 +6,15 @@
       "points": {
         "session": {
           "name": "Individual Session 1",
-          "end": "09-02-2017 16:30",
-          "problems": []
+          "end": "08-02-2018 16:30",
+          "problems": [
+            "ladice",
+            "slatkisi",
+            "supercomputer",
+            "ultraquicksort",
+            "walrusweights",
+            "whostheboss"
+          ]
         }
       }
     },
