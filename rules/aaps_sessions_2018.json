@@ -26,7 +26,14 @@
         "session": {
           "name": "Individual Session 2",
           "end": "01-03-2018 17:00",
-          "problems": []
+          "problems": [
+			"10kindsofpeople",
+			"bigtruck",
+			"brexit",
+			"charlesincharge",
+			"landline",
+			"marchofpenguins"
+		  ]
         }
       }
     },
@@ -38,7 +45,14 @@
         "session": {
           "name": "Individual Session 3",
           "end": "23-04-2018 17:00",
-          "problems": []
+          "problems": [
+			"beepers",
+			"bing",
+			"copyingdna",
+			"dvaput",
+			"lektira",
+			"textureanalysis"
+		  ]
         }
       }
     },
@@ -50,12 +64,17 @@
         "session": {
           "name": "Individual Session 4",
           "end": "21-05-2018 19:00",
-          "problems": []
+          "problems": [
+			"crypto",
+			"primes",
+			"memory2",
+			"birds",
+			"numbersetseasy",
+			"pop"
+		  ]
         }
       }
     },
-
-
 
     {
       "name": "Group Session 1",
@@ -64,7 +83,14 @@
         "session": {
           "name": "Group Session 1",
           "end": "20-03-2018 17:00",
-          "problems": []
+          "problems": [
+			"arcticnetwork",
+			"brickwall",
+			"daceydice",
+			"escapeplan",
+			"princeandprincess",
+			"robotopia"
+		  ]
         }
       }
     },
