@@ -6,14 +6,14 @@
       "points": {
         "session": {
           "name": "Individual Session 1",
-          "end": "08-02-2018 17:00",
+          "end": "14-02-2019 16:30",
           "problems": [
-            "ladice",
-            "slatkisi",
-            "supercomputer",
-            "ultraquicksort",
-            "walrusweights",
-            "whostheboss"
+            "armystrengthhard",
+            "brickwall",
+            "firefly",
+            "muzicari",
+            "shopaholic",
+            "wheresmyinternet"
           ]
         }
       }
@@ -25,15 +25,15 @@
       "points": {
         "session": {
           "name": "Individual Session 2",
-          "end": "01-03-2018 17:00",
+          "end": "14-03-2019 16:30",
           "problems": [
-			"10kindsofpeople",
-			"bigtruck",
-			"brexit",
-			"charlesincharge",
-			"landline",
-			"marchofpenguins"
-		  ]
+            "escapeplan",
+            "oceancurrents",
+            "10kindsofpeople",
+            "freckles",
+            "kastenlauf",
+            "charlesincharge"
+          ]
         }
       }
     },
@@ -44,15 +44,15 @@
       "points": {
         "session": {
           "name": "Individual Session 3",
-          "end": "23-04-2018 17:00",
+          "end": "15-04-2019 16:30",
           "problems": [
-			"beepers",
-			"bing",
-			"copyingdna",
-			"dvaput",
-			"lektira",
-			"textureanalysis"
-		  ]
+            "palindromesubstring",
+            "zipfslaw",
+            "bing",
+            "copyingdna",
+            "lektira",
+            "beepers"
+          ]
         }
       }
     },
@@ -63,15 +63,15 @@
       "points": {
         "session": {
           "name": "Individual Session 4",
-          "end": "21-05-2018 19:00",
+          "end": "13-05-2019 16:30",
           "problems": [
-			"crypto",
-			"primes",
-			"memory2",
-			"birds",
-			"numbersetseasy",
-			"pop"
-		  ]
+            "magical3",
+            "olderbrother",
+            "pop",
+            "logo",
+            "primes",
+            "robotopia"
+          ]
         }
       }
     },
@@ -82,15 +82,15 @@
       "points": {
         "session": {
           "name": "Group Session 1",
-          "end": "20-03-2018 17:00",
+          "end": "25-03-2019 16:30",
           "problems": [
-			"arcticnetwork",
-			"brickwall",
-			"daceydice",
-			"escapeplan",
-			"princeandprincess",
-			"robotopia"
-		  ]
+            "walrusweights",
+            "ladice",
+            "flipfive",
+            "quantum",
+            "marchofpenguins",
+            "landline"
+          ]
         }
       }
     },
@@ -101,27 +101,17 @@
       "points": {
         "session": {
           "name": "Group Session 2",
-          "end": "28-05-2018 17:00",
-          "problems": []
-        }
-      }
-    },
-
-    {
-      "name": "Example Session",
-      "towards": "example-session",
-      "points": {
-        "session": {
-          "name": "Example Session",
-          "end": "18-01-2018 17:00",
+          "end": "28-05-2019 16:30",
           "problems": [
-            "hello",
-            "pointinpolygon",
-            "2naire"
+            "dogs",
+            "ridofcoins",
+            "industrialspy",
+            "memory2",
+            "phonelist",
+            "triangle"
           ]
         }
       }
     }
-
   ]
 }
