@@ -27,7 +27,6 @@ import argparse
 import collections
 import colored
 
-
 def as_color(string, color):
     return '{}{}{}'.format(colored.fg(color), string, colored.attr('reset'))
 
@@ -36,6 +35,8 @@ as_green = lambda string: as_color(string, 'green')
 as_pink = lambda string: as_color(string, 'hot_pink_3a')
 as_blue = lambda string: as_color(string, 'blue')
 as_purple = lambda string: as_color(string, 'purple_1b')
+
+verbose_print = False
 
 Cross = '✗'
 Check = '✓'
@@ -114,12 +115,13 @@ def print_student_result(student_result, detailed):
         return isinstance(rule.points, dict) and 'uppgift' in rule.points
 
     def print_rule_resolution(rule, points):
-        indent = '   '
-        rule_name = as_purple(rule.name or 'Unnamed Rule')
-        print('{}Rule: "{}" gave {} pts'.format(indent, rule_name, as_green(points)))
-        util.cond([
-            (is_uppgift, print_uppgift_details)
-        ])(rule)
+        if verbose_print:
+            indent = '   '
+            rule_name = as_purple(rule.name or 'Unnamed Rule')
+            print('{}Rule: "{}" gave {} pts'.format(indent, rule_name, as_green(points)))
+            util.cond([
+                (is_uppgift, print_uppgift_details)
+            ])(rule)
 
     def print_goal_resolutions(goal):
         util.starmap_now(print_rule_resolution, goal.resolved_rules)
@@ -135,6 +137,7 @@ def print_student_result(student_result, detailed):
         print(name, points)
         if detailed:
             print_goal_resolutions(goal)
+    
     is_upg1 = lambda goal: goal.name.startswith('UPG1')
     is_lab1 = lambda goal: goal.name.startswith('LAB1')
     is_individual = lambda goal: goal.name.startswith('individual-session')
@@ -153,10 +156,10 @@ def print_student_result(student_result, detailed):
         print()
 
     all_goals = [
-        ('Individual Sessions', individual_goals, False),
-        ('Group Sessions', group_goals, False),
-        ('UPG1', upg1_goals, True),
-        ('LAB1', lab1_goals, True)
+        ('Individual Sessions',	individual_goals,	False),
+        ('Group Sessions',		group_goals,		False),
+        ('UPG1',				upg1_goals,			True),
+        ('LAB1',				lab1_goals,			True)
     ]
     util.starmap_now(print_goals, all_goals)
 
