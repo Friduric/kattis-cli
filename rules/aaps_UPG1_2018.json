@@ -5,7 +5,7 @@
       "towards": "UPG1-week1",
       "points": {
         "uppgift": {
-          "deadline": "26-01-2018 10:00",
+          "deadline": "01-02-2019 10:00",
           "problems": [
             "aspenavenue",
             "help2",
@@ -21,7 +21,7 @@
       "towards": "UPG1-week2",
       "points": {
         "uppgift": {
-          "deadline": "02-02-2018 10:00",
+          "deadline": "08-02-2019 10:00",
           "problems": [
             "caching",
             "chopwood",
@@ -37,7 +37,7 @@
       "towards": "UPG1-week3",
       "points": {
         "uppgift": {
-          "deadline": "09-02-2018 10:00",
+          "deadline": "15-02-2019 10:00",
           "problems": [
             "deadfraction",
             "ignore",
@@ -53,7 +53,7 @@
       "towards": "UPG1-week4",
       "points": {
         "uppgift": {
-          "deadline": "16-02-2018 10:00",
+          "deadline": "22-02-2019 10:00",
           "problems": [
             "cudak",
             "funnygames",
@@ -69,7 +69,7 @@
       "towards": "UPG1-week5",
       "points": {
         "uppgift": {
-          "deadline": "21-02-2018 10:00",
+          "deadline": "01-03-2019 10:00",
           "problems": [
             "borg",
             "equivalences",
@@ -85,7 +85,7 @@
       "towards": "UPG1-week6",
       "points": {
         "uppgift": {
-          "deadline": "02-03-2018 10:00",
+          "deadline": "08-03-2019 10:00",
           "problems": [
             "councilling",
             "fulltank",
@@ -101,7 +101,7 @@
       "towards": "UPG1-week7",
       "points": {
         "uppgift": {
-          "deadline": "07-03-2018 10:00",
+          "deadline": "13-03-2019 10:00",
           "problems": [
             "getshorty",
             "hidingplaces",
@@ -117,7 +117,7 @@
       "towards": "UPG1-week8",
       "points": {
         "uppgift": {
-          "deadline": "28-03-2018 08:00",
+          "deadline": "01-04-2019 08:00",
           "problems": [
             "jackjill",
             "towers",
@@ -133,7 +133,7 @@
       "towards": "UPG1-week9",
       "points": {
         "uppgift": {
-          "deadline": "13-04-2018 10:00",
+          "deadline": "05-04-2019 10:00",
           "problems": [
             "dictionaryattack",
             "dominant",
@@ -149,7 +149,7 @@
       "towards": "UPG1-week10",
       "points": {
         "uppgift": {
-          "deadline": "20-04-2018 10:00",
+          "deadline": "12-04-2019 10:00",
           "problems": [
             "codetheft",
             "lifeforms",
@@ -165,7 +165,7 @@
       "towards": "UPG1-week11",
       "points": {
         "uppgift": {
-          "deadline": "27-04-2018 10:00",
+          "deadline": "03-05-2019 10:00",
           "problems": [
             "gokigen",
             "maxloot",
@@ -181,7 +181,7 @@
       "towards": "UPG1-week12",
       "points": {
         "uppgift": {
-          "deadline": "09-05-2018 08:00",
+          "deadline": "10-05-2019 08:00",
           "problems": [
             "circularlock",
             "factovisors",
@@ -197,7 +197,7 @@
       "towards": "UPG1-week13",
       "points": {
         "uppgift": {
-          "deadline": "18-05-2018 10:00",
+          "deadline": "17-05-2019 10:00",
           "problems": [
             "barktree",
             "wrapping",
@@ -213,7 +213,7 @@
       "towards": "UPG1-week14",
       "points": {
         "uppgift": {
-          "deadline": "25-05-2018 13:00",
+          "deadline": "24-05-2019 13:00",
           "problems": [
             "bagoftiles",
             "howmanyzeros",
